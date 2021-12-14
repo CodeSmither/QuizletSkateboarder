@@ -25,7 +25,7 @@ public class SkateboardController : MonoBehaviour
         Vector3 Direction = new Vector3(move, 0, -turn);
         Vector3 Movement = rb.rotation * Direction.normalized;
         Quaternion BonusRotation = Quaternion.Euler(0,turn * 45, 0);
-        Debug.Log(move);
+        
         if (rb.velocity.sqrMagnitude < 0.01f)
         {
             rb.AddTorque(transform.up * torque * turn, ForceMode.Impulse);
@@ -110,4 +110,6 @@ public class SkateboardController : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
+
+    
 }
