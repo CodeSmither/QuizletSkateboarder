@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class SkateboardController : MonoBehaviour
 {
+    /*
     Rigidbody rb;
     float torque = 2f;
     float speed = 3f;
     public bool OnGround;
     public bool OnRamp;
     public bool InAir;
+    public bool OnGrindRail;
     
     void Start()
     {
@@ -42,8 +44,11 @@ public class SkateboardController : MonoBehaviour
                 StartCoroutine("SlowDown");
             }
         }
-
-        if (OnRamp == false)
+        if (OnGrindRail)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        else if (OnRamp == false)
         {
             rb.constraints = RigidbodyConstraints.None;
         }
@@ -56,6 +61,7 @@ public class SkateboardController : MonoBehaviour
         {
             Jumping();
         }
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -74,7 +80,18 @@ public class SkateboardController : MonoBehaviour
            
         }
     }
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision == null)
+        {
+            InAir = true;
+        }
+        else
+        {
+            InAir = false;
+        }
+    }
+
 
     void Flipback()
     {
@@ -93,7 +110,12 @@ public class SkateboardController : MonoBehaviour
 
     void Jumping()
     {
-        rb.AddForce(transform.up * speed * 50, ForceMode.Impulse);
+
+        if (InAir != true)
+        {
+            rb.AddForce(transform.up * speed * 50, ForceMode.Impulse);
+        }
+        
     }
 
     IEnumerator SlowDown()
@@ -111,5 +133,5 @@ public class SkateboardController : MonoBehaviour
         }
     }
 
-    
+    */
 }

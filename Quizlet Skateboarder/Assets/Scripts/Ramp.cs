@@ -8,7 +8,7 @@ public class Ramp : MonoBehaviour
     {
         if (collision.gameObject.tag == "Skateboard")
         {
-            collision.gameObject.GetComponent<SkateboardController>().OnRamp = true;
+            //collision.gameObject.GetComponent<SkateboardController>().OnRamp = true;
         }
     }
 
@@ -16,7 +16,7 @@ public class Ramp : MonoBehaviour
     {
         if (collision.gameObject.tag == "Skateboard")
         {
-            collision.gameObject.GetComponent<SkateboardController>().OnRamp = false;
+            //collision.gameObject.GetComponent<SkateboardController>().OnRamp = false;
         }
     }
 }

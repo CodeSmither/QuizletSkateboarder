@@ -121,6 +121,99 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 0fa3ccc4075b4bb42a189e7ace9944dc, type: 2}
+--- !u!1 &98487713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 98487714}
+  - component: {fileID: 98487718}
+  - component: {fileID: 98487717}
+  - component: {fileID: 98487716}
+  m_Layer: 0
+  m_Name: SkateboardHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &98487714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98487713}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalScale: {x: 0.0050000004, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1125322769}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &98487716
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98487713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2.5, z: 2.5}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &98487717
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98487713}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &98487718
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98487713}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &116432255
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &116432256
 Transform:
   m_ObjectHideFlags: 0
@@ -688,18 +781,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 870455281}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &383916244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 383916242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516f8d7fb1c726e43aa52d3e2406e7c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &383916245
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1033,6 +1114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RampBasic Remake (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e5ca8fcdf617bd47b164a119ac9f283,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e5ca8fcdf617bd47b164a119ac9f283, type: 3}
 --- !u!1 &845891403
@@ -1195,6 +1281,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RampBasic Remake (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e5ca8fcdf617bd47b164a119ac9f283,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e5ca8fcdf617bd47b164a119ac9f283, type: 3}
 --- !u!1 &963194225
@@ -1292,41 +1383,13 @@ GameObject:
   - component: {fileID: 1125322768}
   - component: {fileID: 1125322767}
   - component: {fileID: 1125322766}
-  - component: {fileID: 1125322765}
-  - component: {fileID: 1125322764}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: GrindRail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1125322764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125322763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 843a4eee011b74b4291dedf075fbb123, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!136 &1125322765
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125322763}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 1.9760323
-  m_Height: 1
-  m_Direction: 0
-  m_Center: {x: 0, y: 1.9029832, z: 0.13867855}
+  m_IsActive: 0
 --- !u!65 &1125322766
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1397,7 +1460,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.514, y: 0.72, z: 6.69}
   m_LocalScale: {x: 10, y: 0.05, z: 0.05}
-  m_Children: []
+  m_Children:
+  - {fileID: 98487714}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1482,6 +1546,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RampBasic Remake
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e5ca8fcdf617bd47b164a119ac9f283,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e5ca8fcdf617bd47b164a119ac9f283, type: 3}
@@ -1720,6 +1789,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RampBasic Remake (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e5ca8fcdf617bd47b164a119ac9f283,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e5ca8fcdf617bd47b164a119ac9f283, type: 3}
 --- !u!1 &1635445447 stripped
@@ -1734,18 +1808,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1596882474}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1635445449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635445447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516f8d7fb1c726e43aa52d3e2406e7c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1635445450
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1884,18 +1946,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 816553320}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1673495052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673495050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516f8d7fb1c726e43aa52d3e2406e7c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1673495053
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1988,18 +2038,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1385460518}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1746006146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746006144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 516f8d7fb1c726e43aa52d3e2406e7c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!64 &1746006147
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2032,7 +2070,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1769951673
 Transform:
   m_ObjectHideFlags: 0
@@ -2194,7 +2232,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1856689429}
-  m_Layer: 0
+  - component: {fileID: 1856689430}
+  - component: {fileID: 1856689431}
+  m_Layer: 8
   m_Name: Skateboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2216,6 +2256,35 @@ Transform:
   m_Father: {fileID: 3022123620822934575}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1856689430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856689428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139bee0103c873245a923f36032fb6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGround: 0
+  OnRamp: 0
+  InAir: 0
+  OnGrindRail: 0
+--- !u!65 &1856689431
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856689428}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.16573127, y: 0.084997416, z: 0.53293836}
+  m_Center: {x: 0.012676493, y: -0.021515965, z: 0.04106851}
 --- !u!33 &399565901532731081
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2283,7 +2352,7 @@ GameObject:
   - component: {fileID: 4184717792333957983}
   - component: {fileID: 5836031326778308699}
   - component: {fileID: 1141975591735226857}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel 4
   m_TagString: Skateboard1
   m_Icon: {fileID: 0}
@@ -2323,7 +2392,7 @@ GameObject:
   - component: {fileID: 399565901532731081}
   - component: {fileID: 9088428560705086058}
   - component: {fileID: 1680129427656082194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel 1
   m_TagString: Skateboard1
   m_Icon: {fileID: 0}
@@ -2407,15 +2476,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6600693857564084099}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.34, y: 1.7558, z: 2.284}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 2.514, y: 1.7558, z: 2.284}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 1856689429}
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &3616333561090457501
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,7 +2497,7 @@ GameObject:
   - component: {fileID: 1106652472134983619}
   - component: {fileID: 8314909663375557142}
   - component: {fileID: 3616333561090457502}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel 3
   m_TagString: Skateboard1
   m_Icon: {fileID: 0}
@@ -2482,7 +2551,7 @@ GameObject:
   - component: {fileID: 5204830048733448011}
   - component: {fileID: 1818469253936112070}
   - component: {fileID: 4311229147168756088}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wheel 2
   m_TagString: Skateboard1
   m_Icon: {fileID: 0}
@@ -2521,7 +2590,7 @@ GameObject:
   - component: {fileID: 2432597761084748885}
   - component: {fileID: 7637595255505511849}
   - component: {fileID: 698125286606448054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Support
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2655,10 +2724,11 @@ GameObject:
   - component: {fileID: 3022123620822934575}
   - component: {fileID: 1158613440592929458}
   - component: {fileID: 6566200259401709558}
-  - component: {fileID: 6600693857564084100}
   - component: {fileID: 6600693857564084102}
   - component: {fileID: 6600693857564084101}
   - component: {fileID: 6600693857564084103}
+  - component: {fileID: 6600693857564084100}
+  - component: {fileID: 6600693857564084104}
   m_Layer: 0
   m_Name: Board
   m_TagString: Skateboard
@@ -2675,12 +2745,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6600693857564084099}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20e91b816ac96c24ba95133daadc23a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 47b357e418f9c69488cd7b48f8e01a6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnGround: 0
-  OnRamp: 0
-  InAir: 0
 --- !u!65 &6600693857564084101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2705,7 +2772,7 @@ Rigidbody:
   m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 16
@@ -2723,6 +2790,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7614389, y: 0.14009729, z: 0.11619717}
   m_Center: {x: -0.0999476, y: 0.10865353, z: 0.0022386014}
+--- !u!114 &6600693857564084104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600693857564084099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc060f420ba1594abfa008c00c2eec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7468193473474630602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,7 +2813,7 @@ GameObject:
   - component: {fileID: 7682571874544402407}
   - component: {fileID: 4323018430853067757}
   - component: {fileID: 8459445546146433189}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

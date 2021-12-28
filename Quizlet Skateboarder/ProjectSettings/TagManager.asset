@@ -8,6 +8,8 @@ TagManager:
   - Skateboard
   - Skateboard1
   - Skateboard2
+  - GrindRail
+  - Ramp
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Skateboard
   - 
   - 
   - 
