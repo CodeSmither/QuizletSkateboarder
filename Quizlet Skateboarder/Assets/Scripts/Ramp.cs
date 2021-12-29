@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class Ramp : MonoBehaviour
 {
-    void OnCollisionEnter(Collision collision)
+    SkateboardGravity skateboardGravity;
+    Vector3 rampGravity;
+    GameObject SourceOfGravity;
+    GameObject SourceOfBeginning;
+    Rigidbody skateboardrb;
+     
+    
+    private void Start()
     {
-        if (collision.gameObject.tag == "Skateboard")
-        {
-            //collision.gameObject.GetComponent<SkateboardController>().OnRamp = true;
-        }
+        skateboardGravity = GameObject.Find("Board").GetComponent<SkateboardGravity>();
+        skateboardrb = GameObject.Find("Board").GetComponent<Rigidbody>(); 
+        SourceOfGravity = gameObject.transform.GetChild(0).gameObject;
+        SourceOfBeginning = gameObject.transform.GetChild(1).gameObject;
     }
-
-    void OnCollisionExit(Collision collision)
+    private void FixedUpdate()
     {
-        if (collision.gameObject.tag == "Skateboard")
-        {
-            //collision.gameObject.GetComponent<SkateboardController>().OnRamp = false;
-        }
+        skateboardGravity.SourceOfGravity = new Vector3(rampGravity.x,rampGravity.y,0);
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (skateboardrb.velocity.magnitude > 2f)
+        {
+            rampGravity = (SourceOfGravity.transform.position - gameObject.transform.position).normalized;
+        }
+        else
+        {
+            rampGravity = (SourceOfBeginning.transform.position - gameObject.transform.position).normalized;
+        }
+        
+    }
+    
 }

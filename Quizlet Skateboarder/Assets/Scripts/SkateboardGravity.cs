@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SkateboardGravity : MonoBehaviour
 {
-    Rigidbody rb;
+    public Rigidbody gravityrb;
     SkateboardStatus skateboardStatus;
     float RequiredGravity;
-    Vector3 SourceOfGravity;
+    public Vector3 SourceOfGravity;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        gravityrb = GetComponent<Rigidbody>();
         skateboardStatus = gameObject.GetComponentInChildren<SkateboardStatus>();
         RequiredGravity = 9.8f;
     }
@@ -20,11 +20,25 @@ public class SkateboardGravity : MonoBehaviour
         {
             RequiredGravity = 9.8f;
             SourceOfGravity = Vector3.down;
+            gravityrb.constraints = RigidbodyConstraints.FreezeRotationX;
         }
         else if(skateboardStatus.OnGrindRail == true)
         {
-
+            RequiredGravity = 0.0f;
+            SourceOfGravity = Vector3.down;
+            gravityrb.constraints = RigidbodyConstraints.FreezeRotation;
         }
-        rb.AddForce(SourceOfGravity * rb.mass * RequiredGravity);
+        else if (skateboardStatus.OnRamp == true)
+        {
+            RequiredGravity = 9.8f;
+            gravityrb.constraints = RigidbodyConstraints.None;
+        }
+        else if(skateboardStatus.OnGround == true)
+        {
+            RequiredGravity = 9.8f;
+            SourceOfGravity = Vector3.down;
+            gravityrb.constraints = RigidbodyConstraints.FreezeRotationX;
+        }
+        gravityrb.AddForce(SourceOfGravity * gravityrb.mass * RequiredGravity);
     }
 }
