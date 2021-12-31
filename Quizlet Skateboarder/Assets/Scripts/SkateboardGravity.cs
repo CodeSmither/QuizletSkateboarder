@@ -32,12 +32,14 @@ public class SkateboardGravity : MonoBehaviour
         {
             RequiredGravity = 9.8f;
             gravityrb.constraints = RigidbodyConstraints.None;
+            
+            gravityrb.AddForce(Vector3.down * gravityrb.mass * RequiredGravity);
         }
         else if(skateboardStatus.OnGround == true)
         {
             RequiredGravity = 9.8f;
             SourceOfGravity = Vector3.down;
-            gravityrb.constraints = RigidbodyConstraints.FreezeRotationX;
+            gravityrb.constraints = RigidbodyConstraints.None;
         }
         gravityrb.AddForce(SourceOfGravity * gravityrb.mass * RequiredGravity);
     }
