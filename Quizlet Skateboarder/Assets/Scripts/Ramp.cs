@@ -11,7 +11,7 @@ public class Ramp : MonoBehaviour
     GameObject SourceOfBeginning;
     Rigidbody skateboardrb;
     GameObject Skateboard;
-    public bool isRotating = false;
+    bool isRotating = false;
     float turningTorque = 1.5f;
     
      
@@ -44,15 +44,12 @@ public class Ramp : MonoBehaviour
                 skateboardrb.AddForce(-gameObject.transform.up * (turningTorque * skateboardrb.velocity.magnitude), ForceMode.Impulse);
             }
         }
-        Vector3 CheckVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
-        Debug.Log(Vector3.Dot(gameObject.transform.right, CheckVec.normalized));
+        //Vector3 CheckVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
+        //Debug.Log(Vector3.Dot(gameObject.transform.right, CheckVec.normalized));
         
     }
-
-
     private void OnTriggerStay(Collider other)
     {
-        
            rampGravity = (SourceOfBeginning.transform.position - gameObject.transform.position).normalized;
             // makes forward direction part of a 2d Plane allowing it's direction to always be tracked
             Vector3 rightVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
@@ -65,9 +62,6 @@ public class Ramp : MonoBehaviour
             {
                 isRotating = false;
             }
-
-
-
     }
     private void OnTriggerExit(Collider other)
     {

@@ -8,6 +8,7 @@ public class SkateboardStatus : MonoBehaviour
     public bool OnRamp;
     public bool InAir;
     public bool OnGrindRail;
+    public bool RampAir;
 
     private void Start()
     {

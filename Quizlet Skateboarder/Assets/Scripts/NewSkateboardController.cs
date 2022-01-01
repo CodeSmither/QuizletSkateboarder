@@ -11,6 +11,7 @@ public class NewSkateboardController : MonoBehaviour
     float speed = 3f;
     bool JumpReady = true;
     public bool controlsDisabled = false;
+    bool DoingTrick = false;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -19,7 +20,7 @@ public class NewSkateboardController : MonoBehaviour
     }
     void Update()
     {
-        if (controlsDisabled == false)
+        if (controlsDisabled == false && skateboardStatus.InAir != true)
         {
             float turn = Input.GetAxisRaw("Horizontal");
             float move = Input.GetAxisRaw("Vertical");
@@ -48,6 +49,11 @@ public class NewSkateboardController : MonoBehaviour
                 Jumping();
             }
         }
+        if (skateboardStatus.InAir == true && DoingTrick == false && skateboardStatus.RampAir == false)
+        {
+            Quaternion q = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 2.0f);
+        }
     }
     IEnumerator SlowDown()
     {
@@ -63,20 +69,8 @@ public class NewSkateboardController : MonoBehaviour
     }
     void Jumping()
     {
-        if (JumpReady == true)
-        {
-            rb.AddForce(transform.up * speed * 50, ForceMode.Impulse);
-            StartCoroutine("JumpCoolDown");
-        }
-    }
-    IEnumerator JumpCoolDown()
-    {
-        JumpReady = false;
-        yield return new WaitForSeconds(5f);
-        if (skateboardStatus)
-        {
-            JumpReady = true;
-        }
+            rb.AddForce(transform.up * speed * 50, ForceMode.Impulse);  
+        
     }
     
 }

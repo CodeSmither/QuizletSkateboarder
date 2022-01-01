@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class GrindRailTrain : MonoBehaviour
 {
-    private void OnTriggerStay(Collider other)
+    private bool LockOn;
+    Rigidbody Skateboardrb;
+    NewSkateboardController newSkateboardController;
+
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Skateboard")
-        other.gameObject.transform.position = transform.position;
-        else
+        if (other.gameObject.tag == "Skateboard")
         {
-            Debug.Log("Current Object is: " + other.gameObject);
+            LockOn = true;
+        }
+    }
+    private void Start()
+    {
+        Skateboardrb = GameObject.Find("Board").GetComponent<Rigidbody>();
+        newSkateboardController = Skateboardrb.gameObject.GetComponent<NewSkateboardController>();
+    }
+    private void FixedUpdate()
+    {
+        if (LockOn == true)
+        {
+            Skateboardrb.gameObject.transform.position = gameObject.transform.position;
+            newSkateboardController.controlsDisabled = true;
+            Skateboardrb.constraints = RigidbodyConstraints.FreezePosition;
         }
     }
 }

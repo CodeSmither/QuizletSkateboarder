@@ -26,10 +26,11 @@ public class NewRamp : MonoBehaviour
                 {
                     newSkateboardController.controlsDisabled = true;
                     Invoke("EnableControls", 3.0f);
-                    skateboardrb.velocity = new Vector3(0.0f, 10.0f, 0.0f);
-                    skateboardrb.rotation = Quaternion.Euler(0, skateboardrb.rotation.eulerAngles.y, 90);
                     skateboardrb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-                    StartCoroutine("ReAdjustments ")
+                    skateboardrb.velocity = new Vector3(0f, 10.0f, 0.0f);
+                    skateboardrb.rotation = Quaternion.Euler(0, skateboardrb.rotation.eulerAngles.y, 90);
+                    
+                    Invoke("ReAdjustments",1f);
                 }
             }
         }
@@ -39,4 +40,11 @@ public class NewRamp : MonoBehaviour
     {
         newSkateboardController.controlsDisabled = false;
     }
+   private void ReAdjustments()
+   {
+        
+        skateboardrb.rotation = Quaternion.Euler(0, skateboardrb.rotation.eulerAngles.y + 180, -35);
+        skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
+   }
+
 }
