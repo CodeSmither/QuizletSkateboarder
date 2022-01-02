@@ -20,7 +20,7 @@ public class RampDecision : MonoBehaviour
         if (RampOver == false)
         {
             newSkateboardController.rampDecision = true;
-            Quaternion q = Quaternion.FromToRotation(Skateboardrb.transform.right, Vector3.down) * Skateboardrb.transform.rotation;
+            Quaternion q = Quaternion.FromToRotation(Skateboardrb.transform.right, Vector3.down);
             Skateboardrb.rotation = Quaternion.Slerp(Skateboardrb.transform.rotation, q, Time.deltaTime * 3.0f);
             
         }
