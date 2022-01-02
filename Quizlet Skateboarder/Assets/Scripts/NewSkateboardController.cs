@@ -12,6 +12,7 @@ public class NewSkateboardController : MonoBehaviour
     bool JumpReady = true;
     public bool controlsDisabled = false;
     bool DoingTrick = false;
+    public bool rampDecision = false;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -49,10 +50,10 @@ public class NewSkateboardController : MonoBehaviour
                 Jumping();
             }
         }
-        if (skateboardStatus.InAir == true && DoingTrick == false && skateboardStatus.RampAir == false)
+        if (skateboardStatus.InAir == true && DoingTrick == false && skateboardStatus.RampAir == false && rampDecision == false)
         {
             Quaternion q = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 2.0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 5.0f);
         }
     }
     IEnumerator SlowDown()
