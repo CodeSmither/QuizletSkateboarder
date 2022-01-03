@@ -8,6 +8,9 @@ public class NewRamp : MonoBehaviour
     NewSkateboardController newSkateboardController;
     GameObject skateboard;
     RampAir rampAir;
+    GameObject RampObject;
+    int RampLayer;
+
 
     private void Start()
     {
@@ -15,6 +18,8 @@ public class NewRamp : MonoBehaviour
         newSkateboardController = skateboardrb.gameObject.GetComponent<NewSkateboardController>();
         skateboard = skateboardrb.gameObject;
         rampAir = gameObject.transform.parent.GetChild(3).gameObject.GetComponent<RampAir>();
+        RampObject = gameObject.transform.parent.parent.gameObject;
+        RampLayer = RampObject.gameObject.layer;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -27,9 +32,26 @@ public class NewRamp : MonoBehaviour
                 if (skateboardrb.velocity.magnitude > 4.0f && rampAir.InforLanding == false)
                 {
                     newSkateboardController.controlsDisabled = true;
-                    Invoke("EnableControls", 3.0f);
-                    skateboardrb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
-                    skateboardrb.velocity = new Vector3(0f, 10.0f, 0.0f);
+                    Invoke("EnableControls", 3.5f);
+                    switch (RampLayer)
+                    {
+                        case 0:
+                            skateboardrb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                            break;
+                        case 9:
+                            skateboardrb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                            break;
+                        case 10:
+                            skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                            break;
+                        case 11:
+                            skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+                            break;
+                        default:
+                            return;
+                    }
+                    
+                    skateboardrb.velocity = new Vector3(0f, 12.0f, 0.0f);
                     skateboardrb.rotation = Quaternion.Euler(0, skateboardrb.rotation.eulerAngles.y, 90) * Quaternion.Euler(0,this.gameObject.transform.parent.rotation.y,0);
                     
                     

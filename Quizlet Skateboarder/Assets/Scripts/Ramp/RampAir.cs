@@ -12,14 +12,11 @@ public class RampAir : MonoBehaviour
         skateboardStatus = GameObject.Find("Skateboard").GetComponent<SkateboardStatus>();
         skateboardrb = GameObject.Find("Board").GetComponent<Rigidbody>();
     }
+    
     private void OnTriggerStay(Collider other)
     {
         skateboardStatus.RampAir = true;
-        if (InforLanding == true)
-        {
-            
-            skateboardrb.AddTorque(Vector3.back * 0.15f, ForceMode.Impulse);
-        }
+        
     }
     private void OnTriggerExit(Collider other)
     {
@@ -27,7 +24,7 @@ public class RampAir : MonoBehaviour
 
         if (InforLanding == true)
         {
-            skateboardrb.AddForce(Vector3.right * 5f, ForceMode.Impulse);
+            skateboardrb.AddTorque(Vector3.right * 5f, ForceMode.Impulse);
         } 
     }
     private void Update()
