@@ -15,12 +15,12 @@ public class GameController : MonoBehaviour
     public float player1Score;
     public float player2Score;
     public bool roundOver;
-    
+    public GameObject[] Nodes;
 
     private void Start()
     {
         StartCoroutine("Countdown");
-        
+        SelectNewWord();
     }
     private void Update()
     {
@@ -49,7 +49,15 @@ public class GameController : MonoBehaviour
     }
     private void SelectNewWord()
     {
+        //Collect new String
 
+        string tmpWord = "Space".ToUpper();
+        char[] tmpWordarray = tmpWord.ToCharArray();
+        for (int x = 0; x == 4; x++)
+        {
+            Nodes[x].name = tmpWordarray[x].ToString();
+        }
+        
     }
     IEnumerator Countdown()
     {

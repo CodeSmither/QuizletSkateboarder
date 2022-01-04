@@ -41,7 +41,7 @@ public class RampDecision : MonoBehaviour
                     Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, y, 30f * Time.deltaTime);
                     break;
                 case 11:
-                    Quaternion z = Quaternion.Euler(-55f, Skateboardrb.rotation.y, 0);
+                    Quaternion z = Quaternion.Euler(Skateboardrb.rotation.x, 90, 145f);
                     Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, z, 30f * Time.deltaTime);
                     break;
                 default:

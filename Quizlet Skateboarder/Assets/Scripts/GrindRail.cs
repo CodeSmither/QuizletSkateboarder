@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class GrindRail : MonoBehaviour
 {
-    
+    GameObject GrindRailAgent;
+    GameObject Skateboardrb;
+    void Start()
+    {
+        
+    }   
 
 
 

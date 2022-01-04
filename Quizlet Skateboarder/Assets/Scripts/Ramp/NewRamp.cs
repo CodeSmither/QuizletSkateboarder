@@ -28,10 +28,12 @@ public class NewRamp : MonoBehaviour
             Vector3 rightVec = new Vector3(skateboard.transform.right.x, 0.0f, skateboard.transform.right.z);
             if (Vector3.Dot(gameObject.transform.right, rightVec.normalized) >= 0.0f && Vector3.Dot(gameObject.transform.right, skateboardrb.velocity.normalized) >= 0.0f)
             {
-                
+                Debug.Log("Right Trigger");
                 if (skateboardrb.velocity.magnitude > 4.0f && rampAir.InforLanding == false)
                 {
+                    //may want to check here to see if controls are already disabled
                     newSkateboardController.controlsDisabled = true;
+                    Debug.Log("controls off");
                     Invoke("EnableControls", 3.5f);
                     switch (RampLayer)
                     {
@@ -63,6 +65,7 @@ public class NewRamp : MonoBehaviour
     private void EnableControls()
     {
         newSkateboardController.controlsDisabled = false;
+        Debug.Log("controls on");
     }
 
 }
