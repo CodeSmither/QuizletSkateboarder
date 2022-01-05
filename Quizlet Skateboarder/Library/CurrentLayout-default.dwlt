@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 129
+  controlID: 59
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_SerializedCustomFieldsNames: []
   m_SerializedCustomFieldsValues: []
   m_PlayModeViewName: GameView
-  m_ShowGizmos: 1
+  m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
   m_TargetSize: {x: 973, y: 547}
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_MaximizeOnPlay: 0
   m_UseMipMap: 0
   m_VSyncEnabled: 0
-  m_Gizmos: 1
+  m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 05000000000000000000000000000000000000000000000000000000000000000000000000000000
   m_ZoomArea:
@@ -423,9 +423,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 6afbffff96340000ca340000
+      m_SelectedIDs: 6afbffff
+      m_LastClickedID: -1174
+      m_ExpandedIDs: 6afbffff92340000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -485,9 +485,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6.942614, y: 2.54198, z: 10.271584}
+    m_Target: {x: -24.937431, y: -158.76933, z: -9.321516}
     speed: 2
-    m_Value: {x: 6.942614, y: 2.54198, z: 10.271584}
+    m_Value: {x: -24.937431, y: -158.76933, z: -9.321516}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -533,13 +533,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.067532554, y: 0.080172256, z: -0.0055518458, w: 0.9945208}
+    m_Target: {x: -0.4231941, y: 0.5764276, z: -0.4789337, w: -0.5092737}
     speed: 2
-    m_Value: {x: 0.06752949, y: 0.08016863, z: -0.0055515943, w: 0.9944757}
+    m_Value: {x: -0.42317313, y: 0.57639897, z: -0.47890994, w: -0.50924844}
   m_Size:
-    m_Target: 14.72235
+    m_Target: 93.524536
     speed: 2
-    m_Value: 14.72235
+    m_Value: 93.524536
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -693,21 +693,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scripts/Ramp
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scripts/Ramp
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\ConradS\Documents\GitHub\QuizletSkateboarder\Quizlet
+  m_LastProjectPath: C:\Users\Conrad\Documents\GitHub\QuizletSkateboarder\Quizlet
     Skateboarder
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 6a360000
-    m_LastClickedID: 13930
-    m_ExpandedIDs: 000000005c3600006a36000000ca9a3b
+    m_SelectedIDs: 7a360000
+    m_LastClickedID: 13946
+    m_ExpandedIDs: 000000005e3600007636000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -735,7 +735,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005c360000
+    m_ExpandedIDs: 000000005e360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -819,7 +819,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 13716
+  m_LastSelectedObjectID: 13530
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -883,4 +883,4 @@ MonoBehaviour:
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 445
+  m_LastVerticalScrollValue: 0
