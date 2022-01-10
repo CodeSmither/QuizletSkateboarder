@@ -9,6 +9,7 @@ public class GrindRailTrain : MonoBehaviour
     NewSkateboardController newSkateboardController;
     GameObject GridRail;
     protected internal string Direction;
+    GameObject Camera;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,15 +21,24 @@ public class GrindRailTrain : MonoBehaviour
                 if (Vector3.Dot(Skateboardrb.transform.right,GridRail.transform.right) < 0)
                 {
                     Direction = "North";
+                    Skateboardrb.transform.rotation = Quaternion.Euler(Skateboardrb.transform.rotation.x, 135f, Skateboardrb.transform.rotation.z);
                 }
                 else if (Vector3.Dot(Skateboardrb.transform.right,GridRail.transform.right) > 0)
                 {
                     Direction = "South";
+                    Skateboardrb.transform.rotation = Quaternion.Euler(Skateboardrb.transform.rotation.x, 315f, Skateboardrb.transform.rotation.z);
                 }
             }
             
             
 
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (LockOn == true)
+        {
+            
         }
     }
     private void Start()
@@ -45,6 +55,7 @@ public class GrindRailTrain : MonoBehaviour
             newSkateboardController.controlsDisabled = true;
             Skateboardrb.constraints = RigidbodyConstraints.FreezePosition;
         }
+        
         
     }
 }

@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 678, y: 342}
   m_MaxSize: {x: 12003, y: 8042}
   vertical: 0
-  controlID: 59
+  controlID: 36
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 342}
   m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
-  controlID: 60
+  controlID: 37
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 61
+  controlID: 38
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -423,9 +423,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 6afbffff9c34000068350000
+      m_SelectedIDs: 6afbffff
+      m_LastClickedID: -1174
+      m_ExpandedIDs: 6afbffff9c340000e43400000c35000068350000ec350000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -485,9 +485,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -99.44853, y: -90.57709, z: 92.70057}
+    m_Target: {x: 87.5471, y: -66.09476, z: 128.89674}
     speed: 2
-    m_Value: {x: -99.44853, y: -90.57709, z: 92.70057}
+    m_Value: {x: 87.5471, y: -66.09476, z: 128.89674}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -533,13 +533,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.2668645, y: 0.37548468, z: -0.113741435, w: -0.880316}
+    m_Target: {x: -0.19964954, y: -0.3060067, z: 0.065882206, w: -0.9285788}
     speed: 2
-    m_Value: {x: -0.26685134, y: 0.37546614, z: -0.113735825, w: -0.88027257}
+    m_Value: {x: -0.19963966, y: -0.30599156, z: 0.06587895, w: -0.92853284}
   m_Size:
-    m_Target: 95.4854
+    m_Target: 95.04367
     speed: 2
-    m_Value: 95.4854
+    m_Value: 95.04367
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -693,11 +693,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Ramp
+    - Assets/Scripts/GrindRail
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Ramp
+  - Assets/Scripts/GrindRail
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Conrad\Documents\GitHub\QuizletSkateboarder\Quizlet
     Skateboarder
@@ -705,8 +705,8 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a6360000
-    m_LastClickedID: 13990
+    m_SelectedIDs: 86360000
+    m_LastClickedID: 13958
     m_ExpandedIDs: 000000006a3600008236000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -760,8 +760,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e4340000
-    m_LastClickedInstanceID: 13540
+    m_SelectedInstanceIDs: cc320000362f0000
+    m_LastClickedInstanceID: 13004
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000d03f000000000000b4340000be3900001a3400009e34000012350000a63400000a35000022340000d8480000
     m_RenameOverlay:
