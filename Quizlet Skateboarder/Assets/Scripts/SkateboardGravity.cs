@@ -25,7 +25,7 @@ public class SkateboardGravity : MonoBehaviour
         else if(skateboardStatus.OnGrindRail == true)
         {
             RequiredGravity = 0.0f;
-            SourceOfGravity = Vector3.down;
+            SourceOfGravity = Vector3.zero;
             gravityrb.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else if (skateboardStatus.OnRamp == true)
