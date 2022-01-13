@@ -29,14 +29,28 @@ public class GrindRailCalculator : MonoBehaviour
         {
             Direction = "North";
             Skateboardrb.transform.rotation = Quaternion.Euler(Skateboardrb.transform.rotation.x, 135f, Skateboardrb.transform.rotation.z);
-            RailSpeed = Skateboardrb.velocity.magnitude;
+            RailSpeed = Skateboardrb.velocity.magnitude/80;
+            Vector3 LineVector = (NorthNode.transform.position - SouthNode.transform.position).normalized;
+            Vector3 Differenciation = (Skateboardrb.transform.position - SouthNode.transform.position);
+            float t = Vector3.Dot(LineVector, Differenciation);
+            Vector3 Destination = SouthNode.transform.position + (LineVector * t);
+            
+            Skateboardrb.transform.position = Destination;
         }
         else if (Vector3.Dot(Skateboardrb.transform.right, GridRail.transform.right) > 0)
         {
             Direction = "South";
             Skateboardrb.transform.rotation = Quaternion.Euler(Skateboardrb.transform.rotation.x, 315f, Skateboardrb.transform.rotation.z);
+            RailSpeed = Skateboardrb.velocity.magnitude/80;
+            Vector3 LineVector = (SouthNode.transform.position - NorthNode.transform.position).normalized;
+            Vector3 Differenciation = (Skateboardrb.transform.position - NorthNode.transform.position);
+            float t = Vector3.Dot(LineVector, Differenciation);
+            Vector3 Destination = NorthNode.transform.position + (LineVector * t);
+
+            Skateboardrb.transform.position = Destination;
         }
         skateboardStatus.OnGrindRail = true;
+        skateboardStatus.InAir = false;
     }
     private void OnTriggerExit(Collider other)
     {
@@ -47,13 +61,13 @@ public class GrindRailCalculator : MonoBehaviour
     {
         if(Direction == "North")
         {
-            Vector3 Destination = new Vector3(NorthNode.transform.position.x, Skateboardrb.transform.position.y, NorthNode.transform.position.y);
-            Skateboardrb.transform.position  = Vector3.MoveTowards(Skateboardrb.transform.position, Destination, RailSpeed);
+            Vector3 Destination = new Vector3(NorthNode.transform.position.x, NorthNode.transform.position.y, NorthNode.transform.position.z);
+            Skateboardrb.transform.position  = Vector3.MoveTowards(Skateboardrb.transform.position, NorthNode.transform.position, RailSpeed);
         }
         else if (Direction == "South")
         {
-            Vector3 Destination = new Vector3(SouthNode.transform.position.x, Skateboardrb.transform.position.y, SouthNode.transform.position.y);
-            Skateboardrb.transform.position = Vector3.MoveTowards(Skateboardrb.transform.position, Destination, RailSpeed);
+            Vector3 Destination = new Vector3(SouthNode.transform.position.x, NorthNode.transform.position.y, SouthNode.transform.position.z);
+            Skateboardrb.transform.position = Vector3.MoveTowards(Skateboardrb.transform.position, SouthNode.transform.position, RailSpeed);
         }
     }
 
