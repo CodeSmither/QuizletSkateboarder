@@ -55,6 +55,7 @@ public class GrindRailCalculator : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         Direction = "";
+        skateboardStatus.OnGrindRail = false;
     }
 
     private void FixedUpdate()

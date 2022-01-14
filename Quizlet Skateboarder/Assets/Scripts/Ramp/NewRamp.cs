@@ -51,6 +51,7 @@ public class NewRamp : MonoBehaviour
                             break;
                         default:
                             return;
+                            // Checks Ramp Layer and Orgonises the Rigidbody Constrains which would allow it to move and rotate without falling over
                     }
                     
                     skateboardrb.velocity = new Vector3(0f, 12.0f, 0.0f);
