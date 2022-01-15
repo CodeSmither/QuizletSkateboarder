@@ -9,7 +9,7 @@ public class SkateboardStatus : MonoBehaviour
     public bool InAir;
     public bool OnGrindRail;
     public bool RampAir;
-
+    public bool LockOn;
     private void Start()
     {
         InAir = true;

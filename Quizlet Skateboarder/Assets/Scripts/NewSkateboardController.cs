@@ -6,6 +6,7 @@ public class NewSkateboardController : MonoBehaviour
 {
     Rigidbody rb;
     SkateboardStatus skateboardStatus;
+    GameObject Camera;
     
     float torque = 2f;
     float speed = 3f;
@@ -17,12 +18,15 @@ public class NewSkateboardController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         skateboardStatus = gameObject.GetComponentInChildren<SkateboardStatus>();
+        Camera = gameObject.transform.GetChild(1).gameObject;
       
     }
     void Update()
     {
-        if (controlsDisabled == false && skateboardStatus.InAir != true)
+        if (controlsDisabled == false && skateboardStatus.InAir != true && skateboardStatus.LockOn == false)
         {
+            Camera.transform.localPosition = new Vector3(-1.176285f, 0.41f, -0.3704104f);
+            Camera.transform.localRotation = Quaternion.Euler(0,90,0);
             float turn = Input.GetAxisRaw("Horizontal");
             float move = Input.GetAxisRaw("Vertical");
             Vector3 Direction = new Vector3(move, 0, -turn);
@@ -54,8 +58,16 @@ public class NewSkateboardController : MonoBehaviour
         {
             Quaternion q = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 5.0f);
+            Camera.transform.localPosition = new Vector3(-1.176285f, 0.41f, -0.3704104f);
+            Camera.transform.localRotation = Quaternion.Euler(0, 90, 0);
+        }
+        if (skateboardStatus.LockOn == true)
+        {
+            Camera.transform.localPosition = new Vector3(-0.434f, 0.41f, 1.2f);
+            Camera.transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
     }
+    
     IEnumerator SlowDown()
     {
 
@@ -71,7 +83,6 @@ public class NewSkateboardController : MonoBehaviour
     void Jumping()
     {
             rb.AddForce(transform.up * speed * 50, ForceMode.Impulse);  
-        
     }
     
 }
