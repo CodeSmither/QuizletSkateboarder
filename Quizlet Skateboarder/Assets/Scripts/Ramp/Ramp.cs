@@ -7,7 +7,6 @@ public class Ramp : MonoBehaviour
     SkateboardGravity skateboardGravity;
     SkateboardStatus skateboardStatus;
     Vector3 rampGravity;
-    GameObject SourceOfGravity;
     GameObject SourceOfBeginning;
     Rigidbody skateboardrb;
     GameObject Skateboard;
@@ -21,8 +20,7 @@ public class Ramp : MonoBehaviour
         skateboardGravity = GameObject.Find("Board").GetComponent<SkateboardGravity>();
         skateboardStatus = GameObject.Find("Skateboard").GetComponent<SkateboardStatus>();
         skateboardrb = GameObject.Find("Board").GetComponent<Rigidbody>(); 
-        SourceOfGravity = gameObject.transform.GetChild(0).gameObject;
-        SourceOfBeginning = gameObject.transform.GetChild(1).gameObject;
+        SourceOfBeginning = gameObject.transform.GetChild(0).gameObject;
         Skateboard = GameObject.Find("Board");
     }
     private void FixedUpdate()

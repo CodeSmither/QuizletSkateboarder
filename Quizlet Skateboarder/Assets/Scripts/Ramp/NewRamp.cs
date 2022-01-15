@@ -17,7 +17,7 @@ public class NewRamp : MonoBehaviour
         skateboardrb = GameObject.Find("Board").GetComponent<Rigidbody>();
         newSkateboardController = skateboardrb.gameObject.GetComponent<NewSkateboardController>();
         skateboard = skateboardrb.gameObject;
-        rampAir = gameObject.transform.parent.GetChild(3).gameObject.GetComponent<RampAir>();
+        rampAir = gameObject.transform.parent.GetChild(2).gameObject.GetComponent<RampAir>();
         RampObject = gameObject.transform.parent.parent.gameObject;
         RampLayer = RampObject.gameObject.layer;
     }
@@ -32,8 +32,9 @@ public class NewRamp : MonoBehaviour
                 if (skateboardrb.velocity.magnitude > 4.0f && rampAir.InforLanding == false)
                 {
                     //may want to check here to see if controls are already disabled
+                    
                     newSkateboardController.controlsDisabled = true;
-                    Debug.Log("controls off");
+                    
                     Invoke("EnableControls", 3.5f);
                     switch (RampLayer)
                     {

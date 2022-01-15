@@ -30,23 +30,57 @@ public class RampDecision : MonoBehaviour
             {
                 case 0:
                     Quaternion q = Quaternion.Euler(180f, Skateboardrb.rotation.y, 145f);
-                    Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, q, 30f * Time.deltaTime);
+                    if (Skateboardrb.rotation != q)
+                    {
+                        Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, q, 30f * Time.deltaTime);
+                    }
+                    else
+                    {
+                        Skateboardrb.angularVelocity = Vector3.zero;
+                        Skateboardrb.constraints = RigidbodyConstraints.FreezeRotation;
+                    }
+                    
                     break;
                 case 9:
                     Quaternion x = Quaternion.Euler(0f, Skateboardrb.rotation.y, 325f);
-                    Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, x, 30f * Time.deltaTime);
+                    if (Skateboardrb.rotation != x)
+                    {
+                        Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, x, 30f * Time.deltaTime);
+                    }
+                    else
+                    {
+                        Skateboardrb.angularVelocity = Vector3.zero;
+                        Skateboardrb.constraints = RigidbodyConstraints.FreezeRotation;
+                    }
                     break;
                 case 10:
                     Quaternion y = Quaternion.Euler(Skateboardrb.rotation.x, 270, 325f);
-                    Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, y, 30f * Time.deltaTime);
+                    if (Skateboardrb.rotation != y)
+                    {
+                        Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, y, 30f * Time.deltaTime);
+                    }
+                    else
+                    {
+                        Skateboardrb.angularVelocity = Vector3.zero;
+                        Skateboardrb.constraints = RigidbodyConstraints.FreezeRotation;
+                    }
                     break;
                 case 11:
                     Quaternion z = Quaternion.Euler(Skateboardrb.rotation.x, 90, 325f);
-                    Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, z, 30f * Time.deltaTime);
+                    if (Skateboardrb.rotation != z)
+                    {
+                        Skateboardrb.rotation = Quaternion.RotateTowards(Skateboardrb.rotation, z, 30f * Time.deltaTime);
+                    }
+                    else
+                    {
+                        Skateboardrb.angularVelocity = Vector3.zero;
+                        Skateboardrb.constraints = RigidbodyConstraints.FreezeRotation;
+                    }
                     break;
                 default:
                     return;
             }
+            Debug.Log("Switchcase Activated");
             newSkateboardController.rampDecision = true;
             //Quaternion q = Quaternion.FromToRotation(Skateboardrb.transform.right, Vector3.down);
             //Skateboardrb.rotation = Quaternion.Lerp(Skateboardrb.transform.rotation, q, Time.deltaTime * 10.0f);
@@ -63,16 +97,20 @@ public class RampDecision : MonoBehaviour
             switch (RampLayer)
             {
                 case 0:
-                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f * Skateboardrb.velocity.magnitude, ref Velocity, smoothtime);
+                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
+                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f , ref Velocity, smoothtime);
                     break;
                 case 9:
-                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.right * 0.2f * Skateboardrb.velocity.magnitude, ref Velocity, smoothtime);
+                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
+                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f , ref Velocity, smoothtime);
                     break;
                 case 10:
-                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.forward * 0.2f * Skateboardrb.velocity.magnitude, ref Velocity, smoothtime);
+                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
+                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f , ref Velocity, smoothtime);
                     break;
                 case 11:
-                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.back * 0.2f * Skateboardrb.velocity.magnitude, ref Velocity, smoothtime);
+                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
+                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f , ref Velocity, smoothtime);
                     break;
                 default:
                     return;

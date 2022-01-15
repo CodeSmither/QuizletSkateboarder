@@ -22,10 +22,10 @@ public class RampAir : MonoBehaviour
     {
         skateboardStatus.RampAir = false;
 
-        if (InforLanding == true)
-        {
-            skateboardrb.AddTorque(Vector3.right * 5f, ForceMode.Impulse);
-        } 
+        //if (InforLanding == true)
+       // {
+       //     skateboardrb.AddTorque(Vector3.right * 5f, ForceMode.Impulse);
+       // } 
     }
     private void Update()
     {
