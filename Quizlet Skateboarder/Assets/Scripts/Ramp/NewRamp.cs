@@ -55,7 +55,7 @@ public class NewRamp : MonoBehaviour
                             // Checks Ramp Layer and Orgonises the Rigidbody Constrains which would allow it to move and rotate without falling over
                     }
                     
-                    skateboardrb.velocity = new Vector3(0f, 12.0f, 0.0f);
+                    skateboardrb.velocity = new Vector3(0.0f, 12.0f, 0.0f);
                     skateboardrb.rotation = Quaternion.Euler(0, skateboardrb.rotation.eulerAngles.y, 90) * Quaternion.Euler(0,this.gameObject.transform.parent.rotation.y,0);
                     
                     

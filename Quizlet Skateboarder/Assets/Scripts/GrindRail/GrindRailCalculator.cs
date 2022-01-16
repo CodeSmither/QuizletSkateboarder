@@ -11,7 +11,7 @@ public class GrindRailCalculator : MonoBehaviour
     GameObject NorthNode;
     GameObject SouthNode;
     SkateboardStatus skateboardStatus;
-    
+    Vector3 Destination;
     
     
 
@@ -25,7 +25,7 @@ public class GrindRailCalculator : MonoBehaviour
         skateboardStatus = GameObject.Find("Skateboard").GetComponent<SkateboardStatus>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (Vector3.Dot(Skateboardrb.transform.right, GridRail.transform.right) < 0)
         {
@@ -34,10 +34,9 @@ public class GrindRailCalculator : MonoBehaviour
             Vector3 LineVector = (NorthNode.transform.position - SouthNode.transform.position).normalized;
             Vector3 Differenciation = (Skateboardrb.transform.position - SouthNode.transform.position);
             float t = Vector3.Dot(LineVector, Differenciation);
-            Vector3 Destination = SouthNode.transform.position + (LineVector * t);
-            Debug.Log(Destination);
-
+            Destination = SouthNode.transform.position + (LineVector * t);
             Skateboardrb.transform.position = Destination;
+            Debug.Log("NorthMovement");
         }
         else if (Vector3.Dot(Skateboardrb.transform.right, GridRail.transform.right) > 0)
         {
@@ -46,20 +45,19 @@ public class GrindRailCalculator : MonoBehaviour
             Vector3 LineVector = (SouthNode.transform.position - NorthNode.transform.position).normalized;
             Vector3 Differenciation = (Skateboardrb.transform.position - NorthNode.transform.position);
             float t = Vector3.Dot(LineVector, Differenciation);
-            Vector3 Destination = NorthNode.transform.position + (LineVector * t);
-            Debug.Log(Destination);
-
+            Destination = NorthNode.transform.position + (LineVector * t);
             Skateboardrb.transform.position = Destination;
+            Debug.Log("SouthMovement");
         }
         skateboardStatus.OnGrindRail = true;
         skateboardStatus.InAir = false;
         skateboardStatus.LockOn = true;
-        
+
     }
     private void OnTriggerExit(Collider other)
     {
         Direction = "";
         skateboardStatus.OnGrindRail = false;
-        
     }
+    
 }

@@ -14,6 +14,7 @@ public class NewSkateboardController : MonoBehaviour
     public bool controlsDisabled = false;
     bool DoingTrick = false;
     public bool rampDecision = false;
+    float SkateboardMovement;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -65,6 +66,14 @@ public class NewSkateboardController : MonoBehaviour
         {
             Camera.transform.localPosition = new Vector3(-0.434f, 0.41f, 1.2f);
             Camera.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        if (skateboardStatus.OnGround == true)
+        {
+            controlsDisabled = false;
+            if (Vector3.Dot(rb.transform.up, Vector3.down) >= 0.5f)
+            {
+                rb.transform.up = Vector3.up;
+            }
         }
     }
     

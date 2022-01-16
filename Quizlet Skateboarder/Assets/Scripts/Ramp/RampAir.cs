@@ -6,11 +6,16 @@ public class RampAir : MonoBehaviour
 {
     SkateboardStatus skateboardStatus;
     Rigidbody skateboardrb;
-    public bool InforLanding = false; 
+    public bool InforLanding = false;
+    int RampLayer;
+    GameObject RampObject;
     private void Start()
     {
         skateboardStatus = GameObject.Find("Skateboard").GetComponent<SkateboardStatus>();
         skateboardrb = GameObject.Find("Board").GetComponent<Rigidbody>();
+        RampObject = gameObject.transform.parent.gameObject;
+        RampLayer = RampObject.gameObject.layer;
+        
     }
     
     private void OnTriggerStay(Collider other)
@@ -21,14 +26,31 @@ public class RampAir : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         skateboardStatus.RampAir = false;
-
-        //if (InforLanding == true)
-       // {
-       //     skateboardrb.AddTorque(Vector3.right * 5f, ForceMode.Impulse);
-       // } 
+         
     }
     private void Update()
     {
+        if(InforLanding == true)
+        {
+            switch (RampLayer)
+            {
+                case 0:
+                    skateboardrb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
+                    break;
+                case 9:
+                    skateboardrb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationZ;
+                    break;
+                case 10:
+                    skateboardrb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX;
+                    break;
+                case 11:
+                    skateboardrb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotationX;
+                    break;
+                default:
+                    break;
+            }
+            
+        }
         
     }
 }

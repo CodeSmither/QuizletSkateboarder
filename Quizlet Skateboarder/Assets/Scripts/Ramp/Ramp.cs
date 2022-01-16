@@ -26,40 +26,46 @@ public class Ramp : MonoBehaviour
     private void FixedUpdate()
     {
         
-       skateboardGravity.SourceOfGravity = new Vector3(rampGravity.x, rampGravity.y, 0);
-        
-        if (isRotating == true)
-        {
-            Vector3 rightVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
-            if (Vector3.Dot(gameObject.transform.up, rightVec.normalized) >= 0.0f)
+            skateboardGravity.SourceOfGravity = new Vector3(rampGravity.x, rampGravity.y, 0);
+
+            if (isRotating == true)
             {
-                skateboardrb.AddTorque(Skateboard.transform.up * turningTorque, ForceMode.Impulse);
-                skateboardrb.AddForce(gameObject.transform.up * (turningTorque * skateboardrb.velocity.magnitude), ForceMode.Impulse);
+                Vector3 rightVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
+                if (Vector3.Dot(gameObject.transform.up, rightVec.normalized) >= 0.0f)
+                {
+                    skateboardrb.AddTorque(Skateboard.transform.up * turningTorque, ForceMode.Impulse);
+                    skateboardrb.AddForce(gameObject.transform.up * (turningTorque * skateboardrb.velocity.magnitude), ForceMode.Impulse);
+                }
+                else
+                {
+                    skateboardrb.AddTorque(Skateboard.transform.up * -turningTorque, ForceMode.Impulse);
+                    skateboardrb.AddForce(-gameObject.transform.up * (turningTorque * skateboardrb.velocity.magnitude), ForceMode.Impulse);
+                }
             }
-            else
-            {
-                skateboardrb.AddTorque(Skateboard.transform.up * -turningTorque, ForceMode.Impulse);
-                skateboardrb.AddForce(-gameObject.transform.up * (turningTorque * skateboardrb.velocity.magnitude), ForceMode.Impulse);
-            }
-        }
-        //Vector3 CheckVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
-        //Debug.Log(Vector3.Dot(gameObject.transform.right, CheckVec.normalized));
-        
+            //Vector3 CheckVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
+            //Debug.Log(Vector3.Dot(gameObject.transform.right, CheckVec.normalized));
+            
     }
     private void OnTriggerStay(Collider other)
     {
-           rampGravity = (SourceOfBeginning.transform.position - gameObject.transform.position).normalized;
-            // makes forward direction part of a 2d Plane allowing it's direction to always be tracked
-            Vector3 rightVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
-            float dot = Vector3.Dot(gameObject.transform.right, rightVec.normalized);
-            if (dot >= 0.0f && skateboardrb.velocity.magnitude <= 4.0f)
+        
+
+            if (isRotating == true)
             {
-                isRotating = true;
+                rampGravity = (SourceOfBeginning.transform.position - gameObject.transform.position).normalized;
+                // makes forward direction part of a 2d Plane allowing it's direction to always be tracked
+                Vector3 rightVec = new Vector3(Skateboard.transform.right.x, 0.0f, Skateboard.transform.right.z);
+                float dot = Vector3.Dot(gameObject.transform.right, rightVec.normalized);
+                if (dot >= 0.0f && skateboardrb.velocity.magnitude <= 4.0f)
+                {
+                    isRotating = true;
+                }
+                else if (dot <= 0.0f)
+                {
+                    isRotating = false;
+                }
             }
-            else if (dot <= 0.0f)
-            {
-                isRotating = false;
-            }
+        
     }
     private void OnTriggerExit(Collider other)
     {

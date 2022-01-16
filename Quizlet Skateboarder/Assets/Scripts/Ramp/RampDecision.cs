@@ -20,7 +20,10 @@ public class RampDecision : MonoBehaviour
         RampObject = gameObject.transform.parent.parent.gameObject;
         RampLayer = RampObject.gameObject.layer;
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        Skateboardrb.velocity = new Vector3(0, Skateboardrb.velocity.y, 0);
+    }
     
     private void OnTriggerStay(Collider other)
     {
@@ -37,7 +40,7 @@ public class RampDecision : MonoBehaviour
                     else
                     {
                         Skateboardrb.angularVelocity = Vector3.zero;
-                        Skateboardrb.constraints = RigidbodyConstraints.FreezeRotation;
+                        Skateboardrb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
                     }
                     
                     break;
@@ -50,7 +53,7 @@ public class RampDecision : MonoBehaviour
                     else
                     {
                         Skateboardrb.angularVelocity = Vector3.zero;
-                        Skateboardrb.constraints = RigidbodyConstraints.FreezeRotation;
+                        Skateboardrb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
                     }
                     break;
                 case 10:
@@ -62,7 +65,7 @@ public class RampDecision : MonoBehaviour
                     else
                     {
                         Skateboardrb.angularVelocity = Vector3.zero;
-                        Skateboardrb.constraints = RigidbodyConstraints.FreezeRotation;
+                        Skateboardrb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
                     }
                     break;
                 case 11:
@@ -74,7 +77,7 @@ public class RampDecision : MonoBehaviour
                     else
                     {
                         Skateboardrb.angularVelocity = Vector3.zero;
-                        Skateboardrb.constraints = RigidbodyConstraints.FreezeRotation;
+                        Skateboardrb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
                     }
                     break;
                 default:
@@ -85,6 +88,10 @@ public class RampDecision : MonoBehaviour
             //Quaternion q = Quaternion.FromToRotation(Skateboardrb.transform.right, Vector3.down);
             //Skateboardrb.rotation = Quaternion.Lerp(Skateboardrb.transform.rotation, q, Time.deltaTime * 10.0f);
 
+        }
+        else if (RampOver == true) 
+        { 
+        
         }
         
     }
@@ -97,25 +104,29 @@ public class RampDecision : MonoBehaviour
             switch (RampLayer)
             {
                 case 0:
-                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
-                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f , ref Velocity, smoothtime);
+                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.3f, ref Velocity, smoothtime);
                     break;
                 case 9:
-                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
-                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f , ref Velocity, smoothtime);
+                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.3f, ref Velocity, smoothtime);
                     break;
                 case 10:
-                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
-                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f , ref Velocity, smoothtime);
+                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.3f, ref Velocity, smoothtime - 0.1f);
                     break;
                 case 11:
-                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX;
-                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.2f , ref Velocity, smoothtime);
+                    Skateboardrb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+                    Skateboardrb.transform.position = Vector3.SmoothDamp(Skateboardrb.transform.position, Vector3.left * 0.3f, ref Velocity, smoothtime - 0.1f);
                     break;
                 default:
                     return;
             }
             StartCoroutine("EnableLanding");
+        }
+        else if (RampOver == true)
+        {
+
         }
         
         
