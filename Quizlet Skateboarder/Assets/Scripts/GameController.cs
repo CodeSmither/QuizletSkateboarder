@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
 {
     public Text timertext;
     public Text Player1ScoreText;
+    public Text Player2ScoreText;
     public float remaining_time = 100f;
     public string wordInQuestion1 = "space";
     public string wordInQuestion2 = "space";
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour
         timertext.text = remaining_time.ToString();
         Player1ScoreText.text = player1Score.ToString();
         
+
     }
 
     public void WordChecking1()
@@ -45,6 +47,18 @@ public class GameController : MonoBehaviour
     }
     public void WordChecking2()
     {
+        int x = player2spelling.Length + -1;
+        char newestLetter = player2spelling[x];
+        if (wordInQuestion1[x] != newestLetter)
+        {
+            player2Score += 50 / player2spelling.Length;
+            player2spelling = "";
+        }
+        else if (x + 1 == wordInQuestion1.Length)
+        {
+            player2Score += 100;
+            player2spelling = "";
+        }
 
     }
     private void SelectNewWord()
@@ -67,7 +81,7 @@ public class GameController : MonoBehaviour
             remaining_time -= 1f;
             StartCoroutine("Countdown");
         }
-        if (remaining_time == 0f) ;
+        if (remaining_time == 0f)
         {
             roundOver = true;
         }

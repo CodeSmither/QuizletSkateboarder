@@ -41,6 +41,11 @@ public class SkateboardGravity : MonoBehaviour
             SourceOfGravity = Vector3.down;
             gravityrb.constraints = RigidbodyConstraints.None;
         }
+        else if(skateboardStatus.OnMiniramp == true)
+        {
+            RequiredGravity = 9.8f;
+            gravityrb.constraints = RigidbodyConstraints.None;
+        }
         gravityrb.AddForce(SourceOfGravity * gravityrb.mass * RequiredGravity);
     }
 }

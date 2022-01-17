@@ -10,11 +10,10 @@ public class NewSkateboardController : MonoBehaviour
     
     float torque = 2f;
     float speed = 3f;
-    bool JumpReady = true;
     public bool controlsDisabled = false;
     bool DoingTrick = false;
     public bool rampDecision = false;
-    float SkateboardMovement;
+    public float SpaceTimer;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -54,8 +53,9 @@ public class NewSkateboardController : MonoBehaviour
             {
                 Jumping();
             }
+            
         }
-        if (skateboardStatus.InAir == true && DoingTrick == false && skateboardStatus.RampAir == false && rampDecision == false)
+        if (skateboardStatus.InAir == true && DoingTrick == false && skateboardStatus.RampAir == false && rampDecision == false && skateboardStatus.LockOn == false)
         {
             Quaternion q = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 5.0f);
@@ -91,7 +91,26 @@ public class NewSkateboardController : MonoBehaviour
     }
     void Jumping()
     {
-            rb.AddForce(transform.up * speed * 50, ForceMode.Impulse);  
+        if(skateboardStatus.OnMiniramp != true)
+        {
+            rb.AddForce(transform.up * speed * 50, ForceMode.Impulse);
+        }
+        
     }
-    
+    private void FixedUpdate()
+    {
+        if (Input.GetKey("r"))
+        {
+            SpaceTimer += Time.deltaTime;
+            if(SpaceTimer > 3f)
+            {
+                rb.transform.up = Vector3.up;
+            }
+        }
+        if (Input.GetKeyUp("r"))
+        {
+            SpaceTimer = 0f;
+        }
+    }
+
 }

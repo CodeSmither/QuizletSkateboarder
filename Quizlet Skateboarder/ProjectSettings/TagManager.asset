@@ -10,6 +10,7 @@ TagManager:
   - Skateboard2
   - GrindRail
   - Ramp
+  - MiniRamp
   layers:
   - Default
   - TransparentFX

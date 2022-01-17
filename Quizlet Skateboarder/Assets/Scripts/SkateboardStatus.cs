@@ -10,6 +10,7 @@ public class SkateboardStatus : MonoBehaviour
     public bool OnGrindRail;
     public bool RampAir;
     public bool LockOn;
+    public bool OnMiniramp;
     private void Start()
     {
         InAir = true;
@@ -35,6 +36,11 @@ public class SkateboardStatus : MonoBehaviour
             OnGrindRail = true;
             InAir = false;
         }
+        else if(other.gameObject.tag == "MiniRamp")
+        {
+            OnMiniramp = true;
+            InAir = false;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
@@ -51,6 +57,11 @@ public class SkateboardStatus : MonoBehaviour
         else if(other.gameObject.tag == "GrindRail")
         {
             OnGrindRail = false;
+            InAir = true;
+        }
+        else if(other.gameObject.tag == "MiniRamp")
+        {
+            OnMiniramp = false;
             InAir = true;
         }
 

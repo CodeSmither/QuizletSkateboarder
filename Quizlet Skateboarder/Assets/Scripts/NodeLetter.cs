@@ -7,24 +7,24 @@ public class NodeLetter : MonoBehaviour
     public string letter;
 
     public GameObject GameManager;
-    public bool cooling1;
-    public bool cooling2;
+    private bool cooling1;
+    private bool cooling2;
     public int objectCount;
 
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject == GameObject.FindGameObjectWithTag("Skateboard1") && cooling1 == false)
         {
-            Debug.Log("Touching");
+            
             GameManager.GetComponent<GameController>().player1spelling = GameManager.GetComponent<GameController>().player1spelling + letter;
             cooling1 = true;
             GameManager.GetComponent<GameController>().WordChecking1();
             StartCoroutine(CoolDownTimer());
         }
-        if (other.gameObject == GameObject.FindGameObjectWithTag("Skateboard2") && cooling1 == false)
+        if (other.gameObject == GameObject.FindGameObjectWithTag("Skateboard2") && cooling2 == false)
         {
-            Debug.Log("Touching");
-            GameManager.GetComponent<GameController>().player1spelling = GameManager.GetComponent<GameController>().player2spelling + letter;
+            
+            GameManager.GetComponent<GameController>().player2spelling = GameManager.GetComponent<GameController>().player2spelling + letter;
             cooling2 = true;
             GameManager.GetComponent<GameController>().WordChecking2();
             StartCoroutine(CoolDownTimer());
@@ -51,4 +51,5 @@ public class NodeLetter : MonoBehaviour
             StartCoroutine(CoolDownTimer());
         }
     }
+
 }
