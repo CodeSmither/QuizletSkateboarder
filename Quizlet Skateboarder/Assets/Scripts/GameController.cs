@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     public Text timertext;
     public Text Player1ScoreText;
     public Text Player2ScoreText;
+    public Text Player1SpellingText;
+    public Text Player2SpellingText;
     public float remaining_time = 100f;
     public string wordInQuestion1 = "space";
     public string wordInQuestion2 = "space";
@@ -27,7 +29,9 @@ public class GameController : MonoBehaviour
     {
         timertext.text = remaining_time.ToString();
         Player1ScoreText.text = player1Score.ToString();
-        
+        Player2ScoreText.text = player2Score.ToString();
+        Player1SpellingText.text = player1spelling.ToUpper();
+        Player2SpellingText.text = player2spelling.ToUpper();
 
     }
 
@@ -51,8 +55,11 @@ public class GameController : MonoBehaviour
         char newestLetter = player2spelling[x];
         if (wordInQuestion1[x] != newestLetter)
         {
-            player2Score += 50 / player2spelling.Length;
-            player2spelling = "";
+            if (player2spelling.Length > 0)
+            {
+                player2Score += 50 / player2spelling.Length;
+                player2spelling = "";
+            }
         }
         else if (x + 1 == wordInQuestion1.Length)
         {
