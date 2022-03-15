@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Simon's Work/Scenes/MainMenu.unity
+    path: Assets/Simon's Work/Scenes/StartMenu.unity
     guid: c1212d4a99bcf5042ae2fd6ad6eb5be9
+  - enabled: 1
+    path: Assets/Simon's Work/Scenes/MainMenu.unity
+    guid: 6ddc7595852caee478a986f018475c76
   m_configObjects: {}

@@ -7,7 +7,7 @@ public class JukeBoxAudio : MonoBehaviour
 {
     [SerializeField]AudioSource Jukebox;
     [SerializeField] AudioClip[] Audioclips;
-    [SerializeField] private static float Volume = 0.5f;
+    [SerializeField] private static float Volume = 0.25f;
 
 
     private void Start()

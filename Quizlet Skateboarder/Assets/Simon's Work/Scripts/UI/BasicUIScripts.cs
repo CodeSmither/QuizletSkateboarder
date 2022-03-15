@@ -9,6 +9,10 @@ public class BasicUIScripts : MonoBehaviour
     [SerializeField]GameObject Loading;
     [SerializeField]GameObject fadeOut;
 
+    private void OnEnable()
+    {
+        Loading.SetActive(false);
+    }
     public void Shutdown()
     {
         Application.Quit();
