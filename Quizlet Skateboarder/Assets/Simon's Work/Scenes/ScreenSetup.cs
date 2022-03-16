@@ -23,8 +23,11 @@ public class ScreenSetup : MonoBehaviour
 
     public void ActivateandDeactivate(int DesiredScreenNumber)
     {
+        //Debug.Log("activating" + DesiredScreenNumber);
         ListofActivity[DesiredScreenNumber] = !ListofActivity[DesiredScreenNumber];
+        //Debug.Log("Inversion");
         ScreenList[DesiredScreenNumber].SetActive(ListofActivity[DesiredScreenNumber]);
+        //Debug.Log("Completion");
     }
 
 }
