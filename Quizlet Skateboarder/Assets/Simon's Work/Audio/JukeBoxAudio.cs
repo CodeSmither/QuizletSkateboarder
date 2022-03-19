@@ -7,14 +7,20 @@ public class JukeBoxAudio : MonoBehaviour
 {
     [SerializeField]AudioSource Jukebox;
     [SerializeField] AudioClip[] Audioclips;
-    [SerializeField] private static float Volume = 0.25f;
+    [SerializeField] private static float volume = 0.25f;
 
-
-    private void Start()
+    public static float Volume
     {
-
+        get
+        {
+            return volume;
+        }
+        set
+        {
+            volume = value;
+        }
+        
     }
-
     public void SwapTrack()
     {
             int RandomNumber = Random.Range(0, Audioclips.Length);
@@ -35,5 +41,13 @@ public class JukeBoxAudio : MonoBehaviour
     private void NowPlaying()
     {
 
+    }
+
+    public void SetTrack(int DesiredTrack)
+    {
+        AudioClip Thisclip = Audioclips[DesiredTrack];
+        Jukebox.Stop();
+        Jukebox.clip = Thisclip;
+        Jukebox.Play();
     }
 }
