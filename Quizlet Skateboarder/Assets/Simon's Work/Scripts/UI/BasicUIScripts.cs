@@ -9,7 +9,7 @@ public class BasicUIScripts : MonoBehaviour
     [SerializeField]GameObject Loading;
     [SerializeField]GameObject fadeOut;
 
-    private void OnEnable()
+    private void Awake()
     {
         Loading.SetActive(false);
     }
@@ -35,6 +35,7 @@ public class BasicUIScripts : MonoBehaviour
     IEnumerator loaded(AsyncOperation sync)
     {
         yield return new WaitForSeconds(1);
+        Loading.SetActive(false);
         sync.allowSceneActivation = true;
     }
 }

@@ -7,9 +7,8 @@ public class NewSkateboardController : MonoBehaviour
     Rigidbody rb;
     SkateboardStatus skateboardStatus;
     GameObject Camera;
-    
     float torque = 2f;
-    float speed = 3f;
+    float speed = 5f;
     public bool controlsDisabled = false;
     bool DoingTrick = false;
     public bool rampDecision = false;
@@ -70,13 +69,12 @@ public class NewSkateboardController : MonoBehaviour
         if (skateboardStatus.OnGround == true)
         {
             controlsDisabled = false;
-            if (Vector3.Dot(rb.transform.up, Vector3.down) >= 0.5f)
+            if (Vector3.Dot(rb.transform.up, Vector3.down) >= 0.6f)
             {
                 rb.transform.up = Vector3.up;
             }
         }
     }
-    
     IEnumerator SlowDown()
     {
 
@@ -93,24 +91,9 @@ public class NewSkateboardController : MonoBehaviour
     {
         if(skateboardStatus.OnMiniramp != true)
         {
-            rb.AddForce(transform.up * speed * 50, ForceMode.Impulse);
+            rb.AddForce(transform.up * speed * 40, ForceMode.Impulse);
         }
         
-    }
-    private void FixedUpdate()
-    {
-        if (Input.GetKey("r"))
-        {
-            SpaceTimer += Time.deltaTime;
-            if(SpaceTimer > 3f)
-            {
-                rb.transform.up = Vector3.up;
-            }
-        }
-        if (Input.GetKeyUp("r"))
-        {
-            SpaceTimer = 0f;
-        }
     }
 
 }
