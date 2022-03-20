@@ -2579,7 +2579,12 @@ MonoBehaviour:
   player1Score: 0
   player2Score: 0
   roundOver: 0
-  Nodes: []
+  Nodes:
+  - {fileID: 686161310}
+  - {fileID: 682865243}
+  - {fileID: 1350489366}
+  - {fileID: 1914967240}
+  - {fileID: 1095236426489357026}
   DictonaryFile: Assets\WordsDictonary.CSV
   currentdefinition: {fileID: 462831092}
 --- !u!4 &667892573
@@ -3442,50 +3447,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7018810824537202931, guid: 7c40598ac09cc6f43930427b53640c09, type: 3}
---- !u!1 &906079851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 906079853}
-  - component: {fileID: 906079852}
-  m_Layer: 0
-  m_Name: DictonaryTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &906079852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906079851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620078ee03f0522409818281a4171cbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DictonaryFile: Assets\WordsDictonary.CSV
---- !u!4 &906079853
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906079851}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 169.73956, y: -129.77081, z: -32.651894}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &937228644
 GameObject:
   m_ObjectHideFlags: 0

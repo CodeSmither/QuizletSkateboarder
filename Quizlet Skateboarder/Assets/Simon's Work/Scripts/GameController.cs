@@ -32,7 +32,7 @@ public class GameController : MonoBehaviour
     public Text currentdefinition;
     private string defstring;
 
-    private void Start()
+    private void Awake()
     {
         dictonaryStorage = new DictonaryStorage(DictonaryFile);
         dictonaryStorage.OrginizeDictionary();
@@ -92,11 +92,17 @@ public class GameController : MonoBehaviour
     private void SelectNewWord()
     {
         //Collect new String 
+        
         string tmpWord = RandomDefinition();
+        wordInQuestion1 = tmpWord;
+        wordInQuestion2 = tmpWord;
         char[] tmpWordarray = tmpWord.ToCharArray();
-        for (int x = 0; x == 4; x++)
+        int x = 0;
+        foreach (char character in tmpWordarray)
         {
-            Nodes[x].name = tmpWordarray[x].ToString();
+            //Debug.Log(character);
+            Nodes[x].GetComponent<NodeLetter>().letter = character.ToString();
+            x++;
         }
         // Makes the string Upper case then randomly distributes each letter between each node
     }

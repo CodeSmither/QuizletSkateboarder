@@ -14,6 +14,11 @@ public class NodeLetter : MonoBehaviour
     public int objectCount;
     // stores the current number of objects touching the point
 
+    private void FixedUpdate()
+    {
+        gameObject.name = letter;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject == GameObject.FindGameObjectWithTag("Skateboard1") && cooling1 == false)
