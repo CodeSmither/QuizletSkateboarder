@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DictonaryConverter;
 
 public class GameController : MonoBehaviour
 {
@@ -26,9 +27,15 @@ public class GameController : MonoBehaviour
     // Checks if the round is currently over
     public GameObject[] Nodes;
     // stores all nodes needed
+    DictonaryStorage dictonaryStorage;
+    [SerializeField] string DictonaryFile;
+    public Text currentdefinition;
+    private string defstring;
 
     private void Start()
     {
+        dictonaryStorage = new DictonaryStorage(DictonaryFile);
+        dictonaryStorage.OrginizeDictionary();
         StartCoroutine("Countdown");
         SelectNewWord();
         //starts functions and coroutines which need to be checked in seconds rather than frames
@@ -40,6 +47,7 @@ public class GameController : MonoBehaviour
         Player2ScoreText.text = player2Score.ToString();
         Player1SpellingText.text = player1spelling.ToUpper();
         Player2SpellingText.text = player2spelling.ToUpper();
+        currentdefinition.text = defstring;
         // Updates all Text on the UI
     }
 
@@ -84,7 +92,7 @@ public class GameController : MonoBehaviour
     private void SelectNewWord()
     {
         //Collect new String 
-        string tmpWord = "Space".ToUpper();
+        string tmpWord = RandomDefinition();
         char[] tmpWordarray = tmpWord.ToCharArray();
         for (int x = 0; x == 4; x++)
         {
@@ -106,4 +114,14 @@ public class GameController : MonoBehaviour
         }
         // checks if the round is over or not
     }
+
+    private string RandomDefinition()
+    {
+        int x = Random.Range(0,dictonaryStorage.ValuesArray.GetLength(1));
+        string tmpword = dictonaryStorage.ValuesArray[0, x];
+        string tmpdef = dictonaryStorage.ValuesArray[1, x];
+        defstring = tmpdef;
+        return tmpword;
+    }
+
 }
