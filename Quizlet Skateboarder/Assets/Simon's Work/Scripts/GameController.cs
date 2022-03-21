@@ -57,13 +57,22 @@ public class GameController : MonoBehaviour
         // searches for the newest letter in the player spelling
         if(wordInQuestion1[x] != newestLetter)
         {
-            player1Score += 50/ player1spelling.Length;
+            if (player1spelling.Length > 0)
+            {
+                float inputscore = 50 / (5 / player1spelling.Length);
+                if (inputscore > 10)
+                {
+                    player1Score += inputscore;
+                }
+            }
             player1spelling = "";
+            SelectNewWord();
         }
         else if (x + 1 == wordInQuestion1.Length)
         {
             player1Score += 100;
             player1spelling = "";
+            SelectNewWord();
         }
         // checks if the letter used is the correct letter 
         // then checks if the length of the spelled word is the same as the length of the stored word
@@ -77,14 +86,20 @@ public class GameController : MonoBehaviour
         {
             if (player2spelling.Length > 0)
             {
-                player2Score += 50 / player2spelling.Length;
+                float inputscore = 50 / (5 / player2spelling.Length);
+                if (inputscore > 10)
+                {
+                    player2Score += inputscore;
+                }
                 player2spelling = "";
+                SelectNewWord();
             }
         }
         else if (x + 1 == wordInQuestion1.Length)
         {
             player2Score += 100;
             player2spelling = "";
+            SelectNewWord();
         }
         // checks if the letter used is the correct letter 
         // then checks if the length of the spelled word is the same as the length of the stored word
@@ -94,9 +109,9 @@ public class GameController : MonoBehaviour
         //Collect new String 
         
         string tmpWord = RandomDefinition();
+        
         wordInQuestion1 = tmpWord;
-        wordInQuestion2 = tmpWord;
-        char[] tmpWordarray = tmpWord.ToCharArray();
+        char[] tmpWordarray = WordOrginization.ScrambleWord(tmpWord);
         int x = 0;
         foreach (char character in tmpWordarray)
         {
@@ -106,6 +121,7 @@ public class GameController : MonoBehaviour
         }
         // Makes the string Upper case then randomly distributes each letter between each node
     }
+    
     IEnumerator Countdown()
     {
         if (remaining_time > 0f)

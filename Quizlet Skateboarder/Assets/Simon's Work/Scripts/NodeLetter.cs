@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NodeLetter : MonoBehaviour
 {
@@ -13,10 +14,12 @@ public class NodeLetter : MonoBehaviour
     // stores if a cooldown has been set for player 1 and 2
     public int objectCount;
     // stores the current number of objects touching the point
+    public TMP_Text NodeLetterDisplay;
 
     private void FixedUpdate()
     {
         gameObject.name = letter;
+        NodeLetterDisplay.text = letter;
     }
 
     void OnTriggerEnter(Collider other)

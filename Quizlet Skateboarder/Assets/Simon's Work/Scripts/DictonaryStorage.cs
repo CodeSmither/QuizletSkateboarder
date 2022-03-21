@@ -10,8 +10,8 @@ namespace DictonaryConverter
     {
         StreamReader DictonaryReader;
         string DictonaryFile;
-        public string[,] ValuesArray = new string[2,30];
-        
+        public string[,] ValuesArray = new string[2, 30];
+
         public DictonaryStorage(string DictonaryFile)
         {
             this.DictonaryFile = DictonaryFile;
@@ -43,12 +43,12 @@ namespace DictonaryConverter
                 }
                 string[] WordsArray = Words.ToArray();
                 string[] QuestionsArray = Questions.ToArray();
-                ConversionArray2D(WordsArray,QuestionsArray);
-                
+                ConversionArray2D(WordsArray, QuestionsArray);
+
             }
         }
 
-        public void ConversionArray2D(string[]Words,string[]Questions)
+        public void ConversionArray2D(string[] Words, string[] Questions)
         {
             int x = 0;
             int y = 0;
@@ -56,14 +56,14 @@ namespace DictonaryConverter
             //Debug.Log(string.Join(",", Questions));
             //Debug.Log(Words.Length);
             //Debug.Log(Questions.Length);
-            foreach(string word in Words)
+            foreach (string word in Words)
             {
                 if (x < Words.Length - 1)
                 {
                     ValuesArray[0, x] = word;
                     x++;
                 }
-                
+
             }
             foreach (string question in Questions)
             {
@@ -72,12 +72,34 @@ namespace DictonaryConverter
                     ValuesArray[1, y] = question;
                     y++;
                 }
-            }    
-            
-            
+            }
+
+
+
         }
-        
+    
     }
+    public static class WordOrginization
+    {
+        public static char[] ScrambleWord(string WordUnorgonized)
+        {
+            char[] WordUnorgonizedList = WordUnorgonized.ToCharArray();
+            for( int x = 0; x < WordUnorgonized.Length; x++)
+            {
+                int r = Random.Range(x, WordUnorgonized.Length);
+                char tmp = WordUnorgonizedList[x];
+                WordUnorgonizedList[x] = WordUnorgonizedList[r];
+                WordUnorgonizedList[r] = tmp;
+
+                
+            }
+            string ReorgonizedList = string.Join("", WordUnorgonizedList);
+            char[] charReorgonizedList = ReorgonizedList.ToCharArray();
+            return charReorgonizedList;
+        }
+    }
+
 }
+
 
 

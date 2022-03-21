@@ -83,7 +83,7 @@ public class RampDecision : MonoBehaviour
                 default:
                     return;
             }
-            Debug.Log("Switchcase Activated");
+            //Debug.Log("Switchcase Activated");
             newSkateboardController.rampDecision = true;
             //Quaternion q = Quaternion.FromToRotation(Skateboardrb.transform.right, Vector3.down);
             //Skateboardrb.rotation = Quaternion.Lerp(Skateboardrb.transform.rotation, q, Time.deltaTime * 10.0f);
