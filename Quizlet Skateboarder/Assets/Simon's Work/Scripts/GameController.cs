@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,7 +24,26 @@ public class GameController : MonoBehaviour
     public float player1Score;
     public float player2Score;
     // Each players current score
-    public bool roundOver;
+    private bool roundStarted;
+    private bool roundOver;
+
+    private SkateboardController SkateboardController;
+
+    public bool RoundOver
+    {
+        get { return roundOver;}
+        set
+        {
+            roundOver = value;
+            if (roundOver == true)
+            {
+                PostRoundCutScene();
+            }
+        }
+    }
+    
+
+    
     // Checks if the round is currently over
     public GameObject[] Nodes;
     // stores all nodes needed
@@ -34,11 +54,26 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        SkateboardController = GameObject.Find("Board").GetComponent<SkateboardController>();
+        PreRoundCutScene();
+    }
+
+    private void PreRoundCutScene()
+    {
+
+    }
+
+    private void PostRoundCutScene()
+    {
+
+    }
+
+    private void RoundStart()
+    {
         dictonaryStorage = new DictonaryStorage(DictonaryFile);
         dictonaryStorage.OrginizeDictionary();
         StartCoroutine("Countdown");
         SelectNewWord();
-        //starts functions and coroutines which need to be checked in seconds rather than frames
     }
     private void Update()
     {
@@ -132,7 +167,7 @@ public class GameController : MonoBehaviour
         }
         if (remaining_time == 0f)
         {
-            roundOver = true;
+            RoundOver = true;
         }
         // checks if the round is over or not
     }

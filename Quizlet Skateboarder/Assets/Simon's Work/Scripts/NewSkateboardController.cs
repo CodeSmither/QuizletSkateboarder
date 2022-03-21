@@ -6,6 +6,7 @@ public class NewSkateboardController : MonoBehaviour
 {
     Rigidbody rb;
     SkateboardStatus skateboardStatus;
+    GameController gameController;
     GameObject Camera;
     float torque = 2f;
     float speed = 5f;
@@ -18,60 +19,64 @@ public class NewSkateboardController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         skateboardStatus = gameObject.GetComponentInChildren<SkateboardStatus>();
         Camera = gameObject.transform.GetChild(1).gameObject;
+        gameController = GameObject.Find("GameManger").GetComponent<GameController>();
       
     }
     void Update()
     {
-        if (controlsDisabled == false && skateboardStatus.InAir != true && skateboardStatus.LockOn == false)
+        if (gameController.RoundOver == true)
         {
-            Camera.transform.localPosition = new Vector3(-1.176285f, 0.41f, -0.3704104f);
-            Camera.transform.localRotation = Quaternion.Euler(0,90,0);
-            float turn = Input.GetAxisRaw("Horizontal");
-            float move = Input.GetAxisRaw("Vertical");
-            Vector3 Direction = new Vector3(move, 0, -turn);
-            Vector3 Movement = rb.rotation * Direction.normalized;
-            Quaternion BonusRotation = Quaternion.Euler(0, turn * 45, 0);
-
-            if (rb.velocity.sqrMagnitude < 0.01f)
+            if (controlsDisabled == false && skateboardStatus.InAir != true && skateboardStatus.LockOn == false)
             {
-                rb.AddTorque(transform.up * torque * turn, ForceMode.Impulse);
-                rb.AddForce(transform.right * speed * move, ForceMode.Impulse);
+                Camera.transform.localPosition = new Vector3(-1.176285f, 0.41f, -0.3704104f);
+                Camera.transform.localRotation = Quaternion.Euler(0, 90, 0);
+                float turn = Input.GetAxisRaw("Horizontal");
+                float move = Input.GetAxisRaw("Vertical");
+                Vector3 Direction = new Vector3(move, 0, -turn);
+                Vector3 Movement = rb.rotation * Direction.normalized;
+                Quaternion BonusRotation = Quaternion.Euler(0, turn * 45, 0);
 
-            }
-            else
-            {   // Vector 2 needed for complex direction
-                //rb.AddForce(transform.right * speed * move, ForceMode.Impulse);
-                rb.AddForce(Movement * speed * move, ForceMode.Acceleration);
-                rb.rotation = Quaternion.Slerp(rb.rotation, rb.rotation * BonusRotation, Time.deltaTime);
-                if (move < 0)
+                if (rb.velocity.sqrMagnitude < 0.01f)
                 {
-                    StartCoroutine("SlowDown");
+                    rb.AddTorque(transform.up * torque * turn, ForceMode.Impulse);
+                    rb.AddForce(transform.right * speed * move, ForceMode.Impulse);
+
                 }
+                else
+                {   // Vector 2 needed for complex direction
+                    //rb.AddForce(transform.right * speed * move, ForceMode.Impulse);
+                    rb.AddForce(Movement * speed * move, ForceMode.Acceleration);
+                    rb.rotation = Quaternion.Slerp(rb.rotation, rb.rotation * BonusRotation, Time.deltaTime);
+                    if (move < 0)
+                    {
+                        StartCoroutine("SlowDown");
+                    }
+                }
+                if (Input.GetKeyDown("space"))
+                {
+                    Jumping();
+                }
+
             }
-            if (Input.GetKeyDown("space"))
+            if (skateboardStatus.InAir == true && DoingTrick == false && skateboardStatus.RampAir == false && rampDecision == false && skateboardStatus.LockOn == false)
             {
-                Jumping();
+                Quaternion q = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
+                transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 5.0f);
+                Camera.transform.localPosition = new Vector3(-1.176285f, 0.41f, -0.3704104f);
+                Camera.transform.localRotation = Quaternion.Euler(0, 90, 0);
             }
-            
-        }
-        if (skateboardStatus.InAir == true && DoingTrick == false && skateboardStatus.RampAir == false && rampDecision == false && skateboardStatus.LockOn == false)
-        {
-            Quaternion q = Quaternion.FromToRotation(transform.up, Vector3.up) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 5.0f);
-            Camera.transform.localPosition = new Vector3(-1.176285f, 0.41f, -0.3704104f);
-            Camera.transform.localRotation = Quaternion.Euler(0, 90, 0);
-        }
-        if (skateboardStatus.LockOn == true)
-        {
-            Camera.transform.localPosition = new Vector3(-0.434f, 0.41f, 1.2f);
-            Camera.transform.localRotation = Quaternion.Euler(0, 180, 0);
-        }
-        if (skateboardStatus.OnGround == true)
-        {
-            controlsDisabled = false;
-            if (Vector3.Dot(rb.transform.up, Vector3.down) >= 0.6f)
+            if (skateboardStatus.LockOn == true)
             {
-                rb.transform.up = Vector3.up;
+                Camera.transform.localPosition = new Vector3(-0.434f, 0.41f, 1.2f);
+                Camera.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+            if (skateboardStatus.OnGround == true)
+            {
+                controlsDisabled = false;
+                if (Vector3.Dot(rb.transform.up, Vector3.down) >= 0.6f)
+                {
+                    rb.transform.up = Vector3.up;
+                }
             }
         }
     }

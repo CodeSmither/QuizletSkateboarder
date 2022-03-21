@@ -35,12 +35,12 @@ public class GrindRailCalculator : MonoBehaviour
         if (Vector3.Dot(NorthNode.transform.position,Skateboardrb.velocity) > 0)
         {
             Direction = "North";
-            Skateboardrb.transform.rotation = Quaternion.Euler(Skateboardrb.transform.rotation.x, 135f, Skateboardrb.transform.rotation.z);
+            Skateboardrb.transform.rotation = Quaternion.Euler(Skateboardrb.transform.rotation.x, 45f, Skateboardrb.transform.rotation.z);
         }
         else if (Vector3.Dot(SouthNode.transform.position, Skateboardrb.velocity) > 0)
         {
             Direction = "South";
-            Skateboardrb.transform.rotation = Quaternion.Euler(Skateboardrb.transform.rotation.x, 315f, Skateboardrb.transform.rotation.z);
+            Skateboardrb.transform.rotation = Quaternion.Euler(Skateboardrb.transform.rotation.x, 225f, Skateboardrb.transform.rotation.z);
         }
         // checks if the skateboard is moving in the correct direction
         if (Vector3.Dot(Skateboardrb.transform.right, GridRail.transform.right) < 0)
