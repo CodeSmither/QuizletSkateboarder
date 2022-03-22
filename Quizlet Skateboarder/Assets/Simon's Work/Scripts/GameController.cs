@@ -23,11 +23,26 @@ public class GameController : MonoBehaviour
     // Each players word current spelling of the world
     public float player1Score;
     public float player2Score;
+    public float player1Bonus;
+    public float player2Bonus;
     // Each players current score
-    private bool roundStarted;
+    public bool roundStarted;
     private bool roundOver;
-
+    private bool PreRound = true;
+    [SerializeField] GameObject StartScreen;
+    [SerializeField] GameObject CanvasPosition;
+    private Vector3 Startorigin;
+    private Vector3 Endpoint;
+    private float lerpTime;
+    private float elapsedTime;
+    private float distance;
+    private GameObject StartCanvas;
+    private GameObject Camera4;
+    private GameObject CountDownTimer;
     private SkateboardController SkateboardController;
+    private bool EndGame;
+    private Camera MainCamera;
+    private Camera EndCamera;
 
     public bool RoundOver
     {
@@ -54,19 +69,91 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        MainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        EndCamera = GameObject.Find("End Camera").GetComponent<Camera>();
+        MainCamera.enabled = true;
+        EndCamera.enabled = false;
+        roundStarted = false;
+        RoundOver = false;
         SkateboardController = GameObject.Find("Board").GetComponent<SkateboardController>();
+        StartCanvas = GameObject.Find("StartCanvas");
+        Camera4 = GameObject.Find("Camera4");
+        CountDownTimer = GameObject.Find("CountDownTimer");
+        CountDownTimer.SetActive(false);
         PreRoundCutScene();
     }
 
+    private void FixedUpdate()
+    {
+        
+        if (PreRound == true)
+        {
+            StartScreen.transform.position = Vector3.Lerp(Startorigin, Endpoint, elapsedTime / lerpTime);
+            elapsedTime += Time.deltaTime;
+            distance = Vector3.Distance(StartScreen.transform.position, Endpoint);
+        }
+        if (distance < 0.01f && PreRound == true)
+        {
+            PreRound = false;
+            StartCoroutine(FinishPreRoundCutScene());
+        }
+        if (remaining_time == 3f)
+        {
+            //Debug.Log("Detecting End Time");
+            StartCoroutine(CountToFinish());
+        }
+    }
+
+    private IEnumerator FinishPreRoundCutScene()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(StartCanvas);
+        Destroy(Camera4);
+        StartCoroutine(CountToStart());
+    }
+
+    private IEnumerator CountToStart()
+    {
+        CountDownTimer.SetActive(true);
+        yield return new WaitForSeconds(3);
+        roundStarted = true;
+        RoundStart();
+        yield return new WaitForSeconds(1);
+        CountDownTimer.SetActive(false);
+    }
+    
+
     private void PreRoundCutScene()
     {
+        Startorigin = StartScreen.transform.position;
+        Endpoint = new Vector3(StartScreen.transform.position.x, StartScreen.transform.position.y, CanvasPosition.transform.position.z);
+        lerpTime = 1.0f;
+        elapsedTime = 0f;
+        distance = Vector3.Distance(StartScreen.transform.position, Endpoint);
+        if (distance > 0.1f)
+        {
+            PreRound = true;
+        }
+        
+        
+    }
 
+    private IEnumerator CountToFinish()
+    {
+        CountDownTimer.SetActive(true);
+        yield return new WaitForSeconds(3);
+        roundOver = true;
+        PostRoundCutScene();
+        yield return new WaitForSeconds(20);
+        
     }
 
     private void PostRoundCutScene()
     {
-
+        MainCamera.enabled = false;
+        EndCamera.enabled = true;
     }
+
 
     private void RoundStart()
     {

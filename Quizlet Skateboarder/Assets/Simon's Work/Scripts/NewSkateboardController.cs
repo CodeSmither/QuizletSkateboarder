@@ -9,7 +9,7 @@ public class NewSkateboardController : MonoBehaviour
     GameController gameController;
     GameObject Camera;
     float torque = 2f;
-    float speed = 5f;
+    float speed = 10f;
     public bool controlsDisabled = false;
     bool DoingTrick = false;
     public bool rampDecision = false;
@@ -24,7 +24,7 @@ public class NewSkateboardController : MonoBehaviour
     }
     void Update()
     {
-        if (gameController.RoundOver == true)
+        if (gameController.RoundOver == false && gameController.roundStarted == true)
         {
             if (controlsDisabled == false && skateboardStatus.InAir != true && skateboardStatus.LockOn == false)
             {
@@ -96,7 +96,7 @@ public class NewSkateboardController : MonoBehaviour
     {
         if(skateboardStatus.OnMiniramp != true)
         {
-            rb.AddForce(transform.up * speed * 40, ForceMode.Impulse);
+            rb.AddForce(transform.up * (speed/2) * 40, ForceMode.Impulse);
         }
         
     }

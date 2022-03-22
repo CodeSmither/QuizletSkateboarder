@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Simon's Work/Scenes/MainMenu.unity
     guid: 6ddc7595852caee478a986f018475c76
+  - enabled: 1
+    path: Assets/Simon's Work/Scenes/1Verses1.unity
+    guid: 582ae5d6b614f4b4e9f006afad0945f2
   m_configObjects: {}
