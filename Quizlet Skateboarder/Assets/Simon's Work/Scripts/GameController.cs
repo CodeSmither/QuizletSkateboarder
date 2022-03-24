@@ -43,6 +43,8 @@ public class GameController : MonoBehaviour
     private bool EndGame;
     private Camera MainCamera;
     private Camera EndCamera;
+    private BasicUIScripts basicUIScripts;
+    private bool unnotified;
 
     public bool RoundOver
     {
@@ -81,6 +83,8 @@ public class GameController : MonoBehaviour
         CountDownTimer = GameObject.Find("CountDownTimer");
         CountDownTimer.SetActive(false);
         PreRoundCutScene();
+        unnotified = true;
+        basicUIScripts = GameObject.Find("End Camera").GetComponent<BasicUIScripts>();
     }
 
     private void FixedUpdate()
@@ -100,7 +104,12 @@ public class GameController : MonoBehaviour
         if (remaining_time == 3f)
         {
             //Debug.Log("Detecting End Time");
-            StartCoroutine(CountToFinish());
+            if (unnotified == true)
+            {
+                StartCoroutine(CountToFinish());
+                unnotified = false;
+            }
+            
         }
     }
 
@@ -144,14 +153,15 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(3);
         roundOver = true;
         PostRoundCutScene();
-        yield return new WaitForSeconds(20);
-        
+        yield return new WaitForSeconds(10);
+        basicUIScripts.StartGame();
     }
 
     private void PostRoundCutScene()
     {
         MainCamera.enabled = false;
         EndCamera.enabled = true;
+        
     }
 
 
