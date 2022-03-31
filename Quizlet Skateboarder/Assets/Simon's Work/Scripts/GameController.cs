@@ -15,8 +15,8 @@ public class GameController : MonoBehaviour
     // Different text settings for the UI;
     public float remaining_time = 100f;
     // Remaining Time in the round
-    public string wordInQuestion1 = "space";
-    public string wordInQuestion2 = "space";
+    public string wordInQuestion1 = "SPACE";
+    public string wordInQuestion2 = "SPACE";
     // Each players word that they have to spell
     public string player1spelling;
     public string player2spelling;
@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
     private Camera EndCamera;
     private BasicUIScripts basicUIScripts;
     private bool unnotified;
+    AIThought aIThought;
 
     public bool RoundOver
     {
@@ -85,6 +86,7 @@ public class GameController : MonoBehaviour
         PreRoundCutScene();
         unnotified = true;
         basicUIScripts = GameObject.Find("End Camera").GetComponent<BasicUIScripts>();
+        aIThought = GameObject.Find("AI Board").GetComponent<AIThought>();
     }
 
     private void FixedUpdate()
@@ -171,7 +173,16 @@ public class GameController : MonoBehaviour
         dictonaryStorage.OrginizeDictionary();
         StartCoroutine("Countdown");
         SelectNewWord();
+        UpdateAI();
     }
+
+    private void UpdateAI()
+    {
+        string Objective = aIThought.Objective;
+        aIThought.CurrentGameObjective = GameObject.Find(Objective);
+        
+    }
+
     private void Update()
     {
         timertext.text = remaining_time.ToString();
@@ -214,7 +225,7 @@ public class GameController : MonoBehaviour
         int x = player2spelling.Length + -1;
         char newestLetter = player2spelling[x];
         // searches for the newest letter in the player spelling
-        if (wordInQuestion1[x] != newestLetter)
+        if (wordInQuestion2[x] != newestLetter)
         {
             if (player2spelling.Length > 0)
             {
@@ -227,7 +238,7 @@ public class GameController : MonoBehaviour
                 SelectNewWord();
             }
         }
-        else if (x + 1 == wordInQuestion1.Length)
+        else if (x + 1 == wordInQuestion2.Length)
         {
             player2Score += 100;
             player2spelling = "";
@@ -243,6 +254,7 @@ public class GameController : MonoBehaviour
         string tmpWord = RandomDefinition();
         
         wordInQuestion1 = tmpWord;
+        wordInQuestion2 = tmpWord;
         char[] tmpWordarray = WordOrginization.ScrambleWord(tmpWord);
         int x = 0;
         foreach (char character in tmpWordarray)
