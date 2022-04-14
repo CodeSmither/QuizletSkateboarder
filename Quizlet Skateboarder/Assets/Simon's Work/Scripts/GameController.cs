@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -173,12 +172,14 @@ public class GameController : MonoBehaviour
         dictonaryStorage.OrginizeDictionary();
         StartCoroutine("Countdown");
         SelectNewWord();
-        UpdateAI();
+        StartCoroutine("UpdateAI");
     }
 
-    private void UpdateAI()
+    IEnumerator UpdateAI()
     {
+        yield return new WaitForSeconds(1f);
         string Objective = aIThought.Objective;
+        Debug.Log(Objective);
         aIThought.CurrentGameObjective = GameObject.Find(Objective);
         
     }
@@ -235,14 +236,14 @@ public class GameController : MonoBehaviour
                     player2Score += inputscore;
                 }
                 player2spelling = "";
-                SelectNewWord();
+                
             }
         }
         else if (x + 1 == wordInQuestion2.Length)
         {
             player2Score += 100;
             player2spelling = "";
-            SelectNewWord();
+            
         }
         // checks if the letter used is the correct letter 
         // then checks if the length of the spelled word is the same as the length of the stored word

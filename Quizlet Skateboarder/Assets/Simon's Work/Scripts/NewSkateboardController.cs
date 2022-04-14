@@ -7,6 +7,7 @@ public class NewSkateboardController : MonoBehaviour
     Rigidbody rb;
     SkateboardStatus skateboardStatus;
     GameController gameController;
+    
     GameObject Camera;
     float torque = 1f;
     float speed = 6f;
@@ -17,6 +18,7 @@ public class NewSkateboardController : MonoBehaviour
     private float Inputlength;
     private Transform BoardPoint;
     public float RotationDampening;
+    [SerializeField] Animator animator;
     void Start()
     {
         BoardPoint = GameObject.Find("BoardPoint").transform;
@@ -30,7 +32,7 @@ public class NewSkateboardController : MonoBehaviour
     }
     void Update()
     {
-        if (gameController.RoundOver == false && gameController.roundStarted == true)
+        if (gameController.RoundOver == false && gameController.roundStarted == true) 
         {
             if (controlsDisabled == false && skateboardStatus.InAir != true && skateboardStatus.LockOn == false)
             {
@@ -61,8 +63,8 @@ public class NewSkateboardController : MonoBehaviour
 
                 }
                 else
-                {   // Vector 2 needed for complex direction
-                    //rb.AddForce(transform.right * speed * move, ForceMode.Impulse);
+                {   //Vector 2 needed for complex direction
+                    rb.AddForce(transform.right * speed * move, ForceMode.Impulse);
                     
                     rb.AddForce(Movement * speed * move, ForceMode.Acceleration);
                     rb.rotation = Quaternion.Slerp(rb.rotation, rb.rotation * BonusRotation, Inputlength * Time.deltaTime);
@@ -114,12 +116,35 @@ public class NewSkateboardController : MonoBehaviour
             if (skateboardStatus.OnGround == true)
             {
                 controlsDisabled = false;
+                animator.SetBool("OnGround", true);
 
-                //controlsDisabled = false;
-                //if (Vector3.Dot(rb.transform.up, Vector3.down) >= 0.6f)
-                //{
-                //    rb.transform.up = Vector3.up;
-                //}
+                controlsDisabled = false;
+                if (Vector3.Dot(rb.transform.up, Vector3.down) >= 0.4f)
+                {
+                    animator.SetBool("Falling", true);
+                    rb.transform.up = Vector3.up;
+                }
+                else
+                {
+                    animator.SetBool("Falling", false);
+                }
+            }
+            else { animator.SetBool("OnGround", false); }
+            if (skateboardStatus.InAir == true && animator.GetBool("Jump") == false)
+            {
+                animator.SetBool("InAir",true);
+            }
+            else
+            {
+                animator.SetBool("InAir", false);
+            }
+            if (skateboardStatus.OnGrindRail == true)
+            {
+                animator.SetBool("Grind", true);
+            }
+            else
+            {
+                animator.SetBool("Grind", false);
             }
         }
     }
@@ -137,11 +162,17 @@ public class NewSkateboardController : MonoBehaviour
     }
     void Jumping()
     {
-        if(skateboardStatus.OnMiniramp != true)
+        StartCoroutine(JumpAnim());
+        if (skateboardStatus.OnMiniramp != true)
         {
             rb.AddForce(transform.up * (speed/2) * 40, ForceMode.Impulse);
         }
-        
     }
 
+    IEnumerator JumpAnim()
+    {
+        animator.SetBool("Jump",true);
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("Jump", false);
+    }
 }

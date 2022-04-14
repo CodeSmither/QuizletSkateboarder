@@ -6,12 +6,11 @@ using UnityEngine.AI;
 
 public class AIThought : MonoBehaviour
 {
-
     private NavMeshAgent agent;
     private GameController gameController;
     bool RoundPlaying = true;
     public string Objective = null;
-    private string CurrentObjective;
+    [SerializeField]private string CurrentObjective;
     public GameObject CurrentGameObjective;
     [SerializeField] private GameObject[] Ramps;
     [SerializeField] private GameObject[] TrickSpots;
@@ -59,7 +58,7 @@ public class AIThought : MonoBehaviour
         //Debug.Log(CurrentObjective);
         if (CurrentGameObjective != null)
         {
-            //Debug.Log(CurrentGameObjective.name);
+            Debug.Log(CurrentGameObjective.name);
         }
 
         if (RoundPlaying == true)
@@ -79,7 +78,7 @@ public class AIThought : MonoBehaviour
         }
 
         Debug.Log(Objective);
-        Debug.Log(CurrentGameObjective);
+        
     }
 
     private void ObjectiveFinder()
@@ -160,6 +159,7 @@ public class AIThought : MonoBehaviour
                 }
             }
         }
+        
     }
 
     private IEnumerator ActionEvents()
